@@ -1,0 +1,11 @@
+{
+  "name": "coffee-bakery-pos",
+  "version": "1.0.0",
+  "description": "Coffee Shop POS with Loyalty Points and Supabase Database integration",
+  "main": "index.html",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "author": "Antigravity",
+  "license": "ISC"
+}

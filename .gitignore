@@ -1,0 +1,14 @@
+# Build Outputs
+dist/
+
+# Local configuration & credentials
+config.js
+.env
+.env.local
+
+# Dependency directories
+node_modules/
+
+# OS metadata
+.DS_Store
+Thumbs.db

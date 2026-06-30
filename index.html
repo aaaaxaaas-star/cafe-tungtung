@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COFFEE & BAKERY POS SYSTEM</title>
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- CDNs for External Libraries -->
+  <!-- Supabase JS Client SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Chart.js for Dashboard Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- ================= LOGIN VIEW ================= -->
+  <div id="login-view" class="login-view">
+    <div class="login-card glass-panel">
+      <div class="login-brand">
+        <i data-lucide="coffee" style="width: 36px; height: 36px;"></i>
+        <h2>Cafe POS</h2>
+      </div>
+      <div class="login-header">
+        <h3>เข้าสู่ระบบพนักงาน</h3>
+        <p>กรอกชื่อผู้ใช้และรหัสผ่านเพื่อเข้าใช้งาน</p>
+      </div>
+      
+      <div id="login-error" class="login-error"></div>
+      
+      <form id="login-form" onsubmit="event.preventDefault();">
+        <div class="form-group">
+          <label for="login-username">ชื่อผู้ใช้งาน (Username)</label>
+          <input type="text" id="login-username" class="input-control" placeholder="เช่น admin" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="login-password">รหัสผ่าน (Password)</label>
+          <input type="password" id="login-password" class="input-control" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <button type="submit" id="btn-login-submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+          <i data-lucide="log-in"></i> เข้าสู่ระบบ
+        </button>
+      </form>
+      
+      <div class="demo-credentials">
+        🔑 <strong>สำหรับทดสอบ (Demo Mode):</strong><br>
+        Username: <code>admin</code> / Password: <code>admin</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MAIN LAYOUT (App Shell) ================= -->
+  <div id="main-layout" class="hidden" style="display: flex; height: 100vh; width: 100vw;">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <i data-lucide="coffee" style="width: 28px; height: 28px;"></i>
+        <span>Cafe POS</span>
+      </div>
+      
+      <ul class="sidebar-menu">
+        <li class="sidebar-item active" data-target="dashboard">
+          <i data-lucide="layout-dashboard"></i> แดชบอร์ด (Dashboard)
+        </li>
+        <li class="sidebar-item" data-target="pos">
+          <i data-lucide="shopping-cart"></i> ขายหน้าร้าน (POS)
+        </li>
+        <li class="sidebar-item" data-target="customers">
+          <i data-lucide="users"></i> ลูกค้าสะสมแต้ม (Loyalty)
+        </li>
+        <li class="sidebar-item" data-target="inventory">
+          <i data-lucide="package"></i> จัดการสินค้า (Inventory)
+        </li>
+      </ul>
+      
+      <div class="sidebar-user">
+        <div class="user-info">
+          <span id="display-user-name" class="user-name">พนักงาน</span>
+          <span class="user-role">ผู้ดูแลระบบ</span>
+        </div>
+        <button id="btn-logout" class="btn-logout" title="ออกจากระบบ">
+          <i data-lucide="log-out" style="width: 18px; height: 18px;"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Views Wrapper -->
+    <main style="flex: 1; height: 100%; position: relative;">
+      
+      <!-- 1. DASHBOARD VIEW -->
+      <section id="dashboard-view" class="view-container">
+        <div class="view-header">
+          <div class="view-title">
+            <h1>สรุปผลการดำเนินงาน</h1>
+            <p>รายงานยอดขายและการสะสมแต้มของร้าน</p>
+          </div>
+        </div>
+
+        <!-- Banner for Demo Mode Alert -->
+        <div id="demo-banner" class="demo-banner">
+          <span>⚠️ <strong>ระบบทำงานใน Demo Mode (Local Storage):</strong> ข้อมูลจะถูกบันทึกในเบราว์เซอร์เท่านั้น เชื่อมต่อ Supabase เพื่อบันทึกข้อมูลจริง</span>
+          <span class="demo-banner-close" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+
+        <!-- KPI Metrics Grid -->
+        <div class="dashboard-grid">
+          <div class="stat-card glass-panel">
+            <div class="stat-icon primary">
+              <i data-lucide="dollar-sign"></i>
+            </div>
+            <div class="stat-details">
+              <span class="stat-label">ยอดขายวันนี้ (Revenue Today)</span>
+              <span id="stat-revenue-today" class="stat-value">฿0.00</span>
+            </div>
+          </div>
+          <div class="stat-card glass-panel">
+            <div class="stat-icon success">
+              <i data-lucide="receipt"></i>
+            </div>
+            <div class="stat-details">
+              <span class="stat-label">จำนวนบิลวันนี้ (Orders Today)</span>
+              <span id="stat-orders-today" class="stat-value">0</span>
+            </div>
+          </div>
+          <div class="stat-card glass-panel">
+            <div class="stat-icon accent">
+              <i data-lucide="user-plus"></i>
+            </div>
+            <div class="stat-details">
+              <span class="stat-label">ลูกค้าสะสมแต้มทั้งหมด</span>
+              <span id="stat-total-customers" class="stat-value">0</span>
+            </div>
+          </div>
+          <div class="stat-card glass-panel">
+            <div class="stat-icon primary">
+              <i data-lucide="award"></i>
+            </div>
+            <div class="stat-details">
+              <span class="stat-label">แจกแต้มสะสมทั้งหมด (Points)</span>
+              <span id="stat-total-points" class="stat-value">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts and Rankings -->
+        <div class="dashboard-charts-row">
+          <div class="chart-panel glass-panel">
+            <div class="chart-header">
+              <h3>สถิติยอดขาย 7 วันล่าสุด</h3>
+            </div>
+            <div class="chart-canvas-wrapper">
+              <canvas id="sales-chart"></canvas>
+            </div>
+          </div>
+          <div class="chart-panel glass-panel">
+            <div class="chart-header">
+              <h3>สินค้ายอดนิยม 5 อันดับแรก</h3>
+            </div>
+            <div id="popular-items-list" class="popular-list">
+              <!-- Dynamically populated popular items -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="recent-orders-panel glass-panel">
+          <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">รายการสั่งซื้อล่าสุด</h3>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>รหัสบิล (Order ID)</th>
+                  <th>พนักงานขาย</th>
+                  <th>ลูกค้า</th>
+                  <th>ยอดเงินรวม</th>
+                  <th>คะแนนที่ได้ / ใช้</th>
+                  <th>ชำระเงินโดย</th>
+                  <th>วันที่/เวลา</th>
+                  <th>รายละเอียด</th>
+                </tr>
+              </thead>
+              <tbody id="recent-orders-tbody">
+                <!-- Dynamically populated recent orders -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. POS SALES VIEW -->
+      <section id="pos-view" class="view-container hidden">
+        <div class="pos-layout">
+          
+          <!-- Products Area (Left Panel) -->
+          <div class="pos-products-section">
+            <div class="pos-search-bar">
+              <div class="search-input-wrapper">
+                <i data-lucide="search"></i>
+                <input type="text" id="pos-product-search" class="input-control" placeholder="ค้นหาชื่อสินค้า...">
+              </div>
+              <div class="pos-categories">
+                <button class="category-tab active" data-category="all">ทั้งหมด</button>
+                <button class="category-tab" data-category="coffee">☕ กาแฟ (Coffee)</button>
+                <button class="category-tab" data-category="bakery">🥐 เบเกอรี่ (Bakery)</button>
+              </div>
+            </div>
+
+            <!-- Scrollable Products Grid -->
+            <div class="products-grid-scroll">
+              <div id="products-grid" class="products-grid">
+                <!-- Dynamically loaded products -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Shopping Cart Area (Right Panel) -->
+          <div class="pos-cart-section glass-panel">
+            <div class="cart-header">
+              <h3><i data-lucide="shopping-basket"></i> รายการสั่งซื้อ</h3>
+              <span id="cart-item-count" class="cart-count">0</span>
+            </div>
+
+            <!-- Scrollable Cart Items List -->
+            <div id="cart-items" class="cart-items-scroll">
+              <div class="cart-empty">
+                <i data-lucide="shopping-bag"></i>
+                <p>ไม่มีสินค้าในตะกร้า</p>
+              </div>
+            </div>
+
+            <!-- Customer Loyalty Lookup & Registration Area -->
+            <div class="cart-customer-section">
+              <div class="customer-search-group">
+                <input type="text" id="cart-customer-phone" class="input-control" placeholder="ค้นหาเบอร์โทรศัพท์ลูกค้า (เช่น 0812345678)">
+                <button id="btn-search-customer" class="btn-search-sm" title="ค้นหา"><i data-lucide="search" style="width: 16px; height: 16px;"></i></button>
+                <button id="btn-add-customer-trigger" class="btn-search-sm" style="background-color: var(--success-light); color: var(--success); border-color: rgba(76,175,80,0.3);" title="สมัครสมาชิกใหม่"><i data-lucide="user-plus" style="width: 16px; height: 16px;"></i></button>
+              </div>
+
+              <!-- Visible only when customer is attached to cart -->
+              <div id="cart-attached-customer" class="customer-loyalty-details hidden">
+                <button id="btn-clear-attached-customer" class="btn-clear-customer" title="เอาลูกค้าออก">&times;</button>
+                <div class="customer-loyalty-info">
+                  <span id="cart-cust-name" class="cust-name">ลูกค้า: -</span>
+                  <span id="cart-cust-points" class="cust-pts">แต้มสะสม: 0</span>
+                </div>
+                
+                <label id="point-redeem-container" class="redemption-toggle hidden">
+                  <input type="checkbox" id="chk-redeem-points">
+                  <span>ใช้ 10 แต้ม แลกรับส่วนลด 60 บาท</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Order Financial Summary -->
+            <div class="cart-summary">
+              <div class="summary-row">
+                <span>ราคารวม (Subtotal)</span>
+                <span id="summary-subtotal">฿0.00</span>
+              </div>
+              <div class="summary-row">
+                <span>ส่วนลด (Discount)</span>
+                <span id="summary-discount" style="color: var(--danger);">฿0.00</span>
+              </div>
+              <div id="row-points-earn" class="summary-row points-earn hidden">
+                <span>คะแนนที่ได้รับ (Points Earned)</span>
+                <span id="summary-points-earn">+0.0</span>
+              </div>
+              <div class="summary-row total">
+                <span>ยอดสุทธิ (Total)</span>
+                <span id="summary-total">฿0.00</span>
+              </div>
+
+              <div class="payment-methods">
+                <button class="payment-btn active" data-method="cash">
+                  <i data-lucide="banknote" style="width: 20px; height: 20px;"></i> เงินสด (Cash)
+                </button>
+                <button class="payment-btn" data-method="qr_code">
+                  <i data-lucide="qr-code" style="width: 20px; height: 20px;"></i> สแกน QR (PromptPay)
+                </button>
+              </div>
+
+              <button id="btn-checkout-submit" class="btn btn-primary btn-checkout">
+                ชำระเงิน <i data-lucide="chevron-right"></i>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 3. LOYALTY CUSTOMERS VIEW -->
+      <section id="customers-view" class="view-container hidden">
+        <div class="view-header">
+          <div class="view-title">
+            <h1>ระบบสมาชิกและแต้มสะสม (Loyalty Customers)</h1>
+            <p>รายชื่อลูกค้า ประวัติคะแนนสะสม และการสมัครสมาชิก</p>
+          </div>
+          <button id="btn-add-customer-header" class="btn btn-primary">
+            <i data-lucide="user-plus"></i> สมัครสมาชิกใหม่
+          </button>
+        </div>
+
+        <div class="search-filter-row">
+          <div class="search-input-wrapper">
+            <i data-lucide="search"></i>
+            <input type="text" id="customer-search-input" class="input-control" placeholder="ค้นหาลูกค้าด้วย ชื่อ หรือ เบอร์โทรศัพท์...">
+          </div>
+        </div>
+
+        <div class="customer-detail-grid">
+          <!-- Customer List Table -->
+          <div class="glass-panel" style="padding: 1.5rem; height: 500px; display: flex; flex-direction: column;">
+            <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">รายชื่อสมาชิก</h3>
+            <div class="table-wrapper" style="flex: 1; overflow-y: auto;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>ชื่อลูกค้า</th>
+                    <th>เบอร์โทรศัพท์</th>
+                    <th>คะแนนคงเหลือ</th>
+                  </tr>
+                </thead>
+                <tbody id="customers-tbody">
+                  <!-- Dynamically populated customer row list -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Customer Loyalty Logs -->
+          <div id="customer-points-log-card" class="glass-panel points-log-card hidden">
+            <h3 style="margin-bottom: 0.25rem; font-size: 1.1rem;">ประวัติการใช้งานคะแนนของ</h3>
+            <p id="selected-customer-title" style="color: var(--primary); font-weight: 600; margin-bottom: 1rem;"></p>
+            <div class="table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>วันที่/เวลา</th>
+                    <th>ประเภทรายการ</th>
+                    <th>จำนวนคะแนน</th>
+                    <th>ยอดซื้อรวมในบิล</th>
+                  </tr>
+                </thead>
+                <tbody id="points-history-tbody">
+                  <!-- Dynamically loaded transactions -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. INVENTORY / PRODUCT MANAGEMENT VIEW -->
+      <section id="inventory-view" class="view-container hidden">
+        <div class="view-header">
+          <div class="view-title">
+            <h1>จัดการสินค้า (Inventory Management)</h1>
+            <p>เพิ่ม แก้ไข เมนูกาแฟ และ เบเกอรี่ในร้าน</p>
+          </div>
+          <button id="btn-add-product-header" class="btn btn-primary">
+            <i data-lucide="plus-circle"></i> เพิ่มสินค้าใหม่
+          </button>
+        </div>
+
+        <div class="search-filter-row">
+          <div class="search-input-wrapper">
+            <i data-lucide="search"></i>
+            <input type="text" id="inventory-search-input" class="input-control" placeholder="ค้นหาตามชื่อสินค้า...">
+          </div>
+        </div>
+
+        <!-- Inventory List -->
+        <div class="glass-panel" style="padding: 1.5rem;">
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ชื่อสินค้า</th>
+                  <th>หมวดหมู่</th>
+                  <th>ราคา (บาท)</th>
+                  <th>คะแนนสะสมที่ได้รับ (สำหรับกาแฟ)</th>
+                  <th>สถานะการขาย</th>
+                  <th>การจัดการ</th>
+                </tr>
+              </thead>
+              <tbody id="inventory-tbody">
+                <!-- Dynamically populated product list -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- ================= MODALS SECTION ================= -->
+  
+  <!-- 1. CUSTOMER REGISTRATION MODAL -->
+  <div id="customer-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <button class="modal-close" id="btn-close-customer-modal">&times;</button>
+      <div class="modal-header">
+        <h3>สมัครสมาชิกลูกค้าใหม่</h3>
+      </div>
+      <form id="customer-form" onsubmit="event.preventDefault();">
+        <div class="form-group">
+          <label for="cust-name-input">ชื่อ-นามสกุลลูกค้า</label>
+          <input type="text" id="cust-name-input" class="input-control" placeholder="เช่น คุณสมชาย รักกาแฟ" required>
+        </div>
+        <div class="form-group">
+          <label for="cust-phone-input">เบอร์โทรศัพท์ (ความยาว 10 หลัก)</label>
+          <input type="text" id="cust-phone-input" class="input-control" placeholder="เช่น 0812345678" pattern="[0-9]{10}" maxlength="10" required>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-secondary" id="btn-cancel-customer-modal">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary">บันทึกสมาชิก</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. PRODUCT EDIT / ADD MODAL -->
+  <div id="product-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <button class="modal-close" id="btn-close-product-modal">&times;</button>
+      <div class="modal-header">
+        <h3 id="product-modal-title">เพิ่มสินค้าใหม่</h3>
+      </div>
+      <form id="product-form" onsubmit="event.preventDefault();">
+        <input type="hidden" id="product-id-input">
+        <div class="form-group">
+          <label for="product-name-input">ชื่อสินค้า (ภาษาไทย / อังกฤษ)</label>
+          <input type="text" id="product-name-input" class="input-control" placeholder="เช่น Hot Latte (ลาเต้ร้อน)" required>
+        </div>
+        <div class="form-group">
+          <label for="product-category-input">หมวดหมู่สินค้า</label>
+          <select id="product-category-input" class="input-control" required style="background: rgba(0,0,0,0.5); color: var(--text-primary);">
+            <option value="coffee">☕ กาแฟ (Coffee) - สะสมแต้มได้</option>
+            <option value="bakery">🥐 เบเกอรี่ (Bakery) - ไม่สะสมแต้ม</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="product-price-input">ราคาสินค้า (บาท)</label>
+          <input type="number" id="product-price-input" class="input-control" placeholder="เช่น 60" min="0" step="0.5" required>
+        </div>
+        <div class="form-group" id="points-reward-group">
+          <label for="product-points-input">คะแนนสะสมที่ได้รับ (คะแนนต่อแก้ว)</label>
+          <input type="number" id="product-points-input" class="input-control" placeholder="1.0" min="0" step="0.1" value="1.0">
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-secondary" id="btn-cancel-product-modal">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary">บันทึกข้อมูลสินค้า</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. PROMPTPAY QR CODE MODAL -->
+  <div id="qr-modal" class="modal-overlay hidden">
+    <div class="modal-content" style="width: 360px; padding: 2rem 1.5rem;">
+      <button class="modal-close" id="btn-close-qr-modal">&times;</button>
+      <div class="modal-header" style="text-align: center; margin-bottom: 1rem;">
+        <h3>สแกนชำระเงิน PromptPay</h3>
+      </div>
+      <div class="qr-modal-body">
+        <div class="qr-code-placeholder">
+          <!-- Dynamic SVG/Mock QR Code generator -->
+          <div id="qr-image-container">
+            <!-- Simulated QR code graphics -->
+            <svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+              <rect width="180" height="180" fill="white"/>
+              <!-- Nested Mock QR patterns -->
+              <rect x="10" y="10" width="40" height="40" fill="#004a80" stroke="white" stroke-width="4"/>
+              <rect x="20" y="20" width="20" height="20" fill="white"/>
+              
+              <rect x="130" y="10" width="40" height="40" fill="#004a80" stroke="white" stroke-width="4"/>
+              <rect x="140" y="20" width="20" height="20" fill="white"/>
+              
+              <rect x="10" y="130" width="40" height="40" fill="#004a80" stroke="white" stroke-width="4"/>
+              <rect x="20" y="140" width="20" height="20" fill="white"/>
+              
+              <!-- Center logo area -->
+              <rect x="75" y="75" width="30" height="30" fill="#004a80" rx="4"/>
+              <circle cx="90" cy="90" r="8" fill="white"/>
+              
+              <!-- Random QR bits simulated -->
+              <path d="M 60,20 H 80 V 40 H 60 Z M 100,20 H 120 V 30 H 100 Z M 60,50 H 70 V 70 H 60 Z M 90,50 H 110 V 80 H 90 Z M 130,60 H 150 V 90 H 130 Z M 20,70 H 50 V 90 H 20 Z M 60,80 H 80 V 100 H 60 Z M 110,90 H 120 V 120 H 110 Z M 10,100 H 30 V 120 H 10 Z M 80,110 H 100 V 130 H 80 Z M 130,110 H 160 V 130 H 130 Z M 60,130 H 70 V 160 H 60 Z M 80,140 H 110 V 170 H 80 Z M 130,140 H 150 V 160 H 130 Z" fill="#222"/>
+            </svg>
+          </div>
+          <div class="qr-logo-overlay">
+            <!-- Simulated PromptPay Logo icon representation -->
+            <i data-lucide="pocket" style="color: #004a80; width: 24px; height: 24px;"></i>
+          </div>
+        </div>
+        <div>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.25rem;">จำนวนเงินชำระ</p>
+          <span id="qr-pay-amount" class="qr-amount">฿0.00</span>
+        </div>
+        <button id="btn-qr-success-simulate" class="btn btn-primary" style="width: 100%;">
+          <i data-lucide="check-circle"></i> ยืนยันชำระเงินสำเร็จ (Simulate)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. CASH PAYOUT MODAL -->
+  <div id="cash-modal" class="modal-overlay hidden">
+    <div class="modal-content" style="width: 400px;">
+      <button class="modal-close" id="btn-close-cash-modal">&times;</button>
+      <div class="modal-header">
+        <h3>ชำระเงินสด</h3>
+      </div>
+      <form id="cash-form" onsubmit="event.preventDefault();">
+        <div class="form-group">
+          <label style="font-size: 1rem;">ยอดที่ต้องชำระ: <strong id="cash-charge-total" style="color: var(--primary); font-size: 1.25rem;">฿0.00</strong></label>
+        </div>
+        <div class="form-group">
+          <label for="cash-received-input">จำนวนเงินที่รับมา (บาท)</label>
+          <input type="number" id="cash-received-input" class="input-control" style="font-size: 1.5rem; font-weight: 700; color: var(--primary);" placeholder="0" min="0" step="1" required>
+        </div>
+        
+        <div class="form-group" id="change-result-row" style="margin-top: 1rem; display: none;">
+          <label style="font-size: 1rem;">เงินทอน: <strong id="cash-change-amount" style="color: var(--success); font-size: 1.8rem; font-family: var(--font-display);">฿0.00</strong></label>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-secondary" id="btn-cancel-cash-modal">ยกเลิก</button>
+          <button type="submit" id="btn-cash-confirm" class="btn btn-primary" disabled>ยืนยันชำระเงิน</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. DIGITAL THERMAL RECEIPT MODAL -->
+  <div id="receipt-modal" class="modal-overlay hidden">
+    <div class="modal-content" style="width: 420px; padding: 1.5rem;">
+      <button class="modal-close" id="btn-close-receipt-modal">&times;</button>
+      <div class="modal-header" style="margin-bottom: 1rem;">
+        <h3>ใบเสร็จรับเงินอิเล็กทรอนิกส์</h3>
+      </div>
+      
+      <div class="receipt-paper" id="receipt-content">
+        <!-- Receipt contents generated dynamically in app.js -->
+      </div>
+      
+      <div style="display: flex; justify-content: center; gap: 1rem;">
+        <button class="btn btn-secondary" id="btn-print-receipt-simulate">
+          <i data-lucide="printer"></i> พิมพ์ใบเสร็จ (Print)
+        </button>
+        <button class="btn btn-primary" id="btn-close-receipt-done" style="flex: 1;">
+          เสร็จสิ้นบิลใหม่ <i data-lucide="check"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= APP SCRIPTS ================= -->
+  <!-- Loaded sequentially to ensure proper order of declarations -->
+  <script src="config.js"></script>
+  <script src="db.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
