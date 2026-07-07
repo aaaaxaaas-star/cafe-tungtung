@@ -39,28 +39,28 @@
         <h2>Cafe POS</h2>
       </div>
       <div class="login-header">
-        <h3>เน€เธโฌเน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธ‘เน€เธยเน€เธยเน€เธเธ’เน€เธย</h3>
-        <p>เน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธ…เน€เธเธเน€เธเธเน€เธเธเน€เธเธ‘เน€เธเธเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธโฌเน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธโฌเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธย</p>
+        <h3>เข้าสู่ระบบพนักงาน</h3>
+        <p>กรอกชื่อผู้ใช้และรหัสผ่านเพื่อเข้าใช้งาน</p>
       </div>
       
       <div id="login-error" class="login-error"></div>
       
       <form id="login-form" onsubmit="event.preventDefault();">
         <div class="form-group">
-          <label for="login-username">เน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธย (Username)</label>
-          <input type="text" id="login-username" class="input-control" placeholder="เน€เธโฌเน€เธยเน€เธยเน€เธย admin" required autocomplete="username">
+          <label for="login-username">ชื่อผู้ใช้งาน (Username)</label>
+          <input type="text" id="login-username" class="input-control" placeholder="เช่น admin" required autocomplete="username">
         </div>
         <div class="form-group">
-          <label for="login-password">เน€เธเธเน€เธเธเน€เธเธ‘เน€เธเธเน€เธยเน€เธยเน€เธเธ’เน€เธย (Password)</label>
-          <input type="password" id="login-password" class="input-control" placeholder="เนโฌเธเนโฌเธเนโฌเธเนโฌเธเนโฌเธเนโฌเธเนโฌเธเนโฌเธ" required autocomplete="current-password">
+          <label for="login-password">รหัสผ่าน (Password)</label>
+          <input type="password" id="login-password" class="input-control" placeholder="••••••••" required autocomplete="current-password">
         </div>
         <button type="submit" id="btn-login-submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
-          <i data-lucide="log-in"></i> เน€เธโฌเน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธย
+          <i data-lucide="log-in"></i> เข้าสู่ระบบ
         </button>
       </form>
       
       <div class="demo-credentials">
-        เนยโ€โ€ <strong>เน€เธเธเน€เธเธ“เน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธโ€”เน€เธโ€เน€เธเธเน€เธเธเน€เธย (Demo Mode):</strong><br>
+        🔑 <strong>สำหรับทดสอบ (Demo Mode):</strong><br>
         Username: <code>admin</code> / Password: <code>admin</code>
       </div>
     </div>
@@ -78,25 +78,25 @@
       
       <ul class="sidebar-menu">
         <li class="sidebar-item active" data-target="dashboard">
-          <i data-lucide="layout-dashboard"></i> เน€เธยเน€เธโ€เน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธโ€ (Dashboard)
+          <i data-lucide="layout-dashboard"></i> แดชบอร์ด (Dashboard)
         </li>
         <li class="sidebar-item" data-target="pos">
-          <i data-lucide="shopping-cart"></i> เน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ’เน€เธย (POS)
+          <i data-lucide="shopping-cart"></i> ขายหน้าร้าน (POS)
         </li>
         <li class="sidebar-item" data-target="customers">
-          <i data-lucide="users"></i> เน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธยเน€เธโ€ขเน€เธยเน€เธเธ (Loyalty)
+          <i data-lucide="users"></i> ลูกค้าสะสมแต้ม (Loyalty)
         </li>
         <li class="sidebar-item" data-target="inventory">
-          <i data-lucide="package"></i> เน€เธยเน€เธเธ‘เน€เธโ€เน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’ (Inventory)
+          <i data-lucide="package"></i> จัดการสินค้า (Inventory)
         </li>
       </ul>
       
       <div class="sidebar-user">
         <div class="user-info">
-          <span id="display-user-name" class="user-name">เน€เธยเน€เธยเน€เธเธ‘เน€เธยเน€เธยเน€เธเธ’เน€เธย</span>
-          <span class="user-role">เน€เธยเน€เธเธเน€เธยเน€เธโ€เน€เธเธเน€เธยเน€เธเธ…เน€เธเธเน€เธเธเน€เธยเน€เธย</span>
+          <span id="display-user-name" class="user-name">พนักงาน</span>
+          <span class="user-role">ผู้ดูแลระบบ</span>
         </div>
-        <button id="btn-logout" class="btn-logout" title="เน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธย">
+        <button id="btn-logout" class="btn-logout" title="ออกจากระบบ">
           <i data-lucide="log-out" style="width: 18px; height: 18px;"></i>
         </button>
       </div>
@@ -109,14 +109,14 @@
       <section id="dashboard-view" class="view-container">
         <div class="view-header">
           <div class="view-title">
-            <h1>เน€เธเธเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธเธ…เน€เธยเน€เธเธ’เน€เธเธเน€เธโ€เน€เธเธ“เน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธยเน€เธเธ’เน€เธย</h1>
-            <p>เน€เธเธเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ’เน€เธยเน€เธเธเน€เธเธเน€เธโ€เน€เธยเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ…เน€เธเธเน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธยเน€เธโ€ขเน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธเธ’เน€เธย</p>
+            <h1>สรุปผลการดำเนินงาน</h1>
+            <p>รายงานยอดขายและการสะสมแต้มของร้าน</p>
           </div>
         </div>
 
         <!-- Banner for Demo Mode Alert -->
         <div id="demo-banner" class="demo-banner">
-          <span>เนยย เนเธย <strong>เน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธโ€”เน€เธเธ“เน€เธยเน€เธเธ’เน€เธยเน€เธยเน€เธย Demo Mode (Local Storage):</strong> เน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ…เน€เธยเน€เธเธเน€เธโ€“เน€เธเธเน€เธยเน€เธยเน€เธเธ‘เน€เธยเน€เธโ€”เน€เธเธ–เน€เธยเน€เธยเน€เธยเน€เธโฌเน€เธยเน€เธเธเน€เธเธ’เน€เธเธเน€เธยเน€เธโฌเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธโฌเน€เธโ€”เน€เธยเน€เธเธ’เน€เธยเน€เธเธ‘เน€เธยเน€เธย เน€เธโฌเน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธเธเน€เธโ€ขเน€เธยเน€เธเธ Supabase เน€เธโฌเน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธยเน€เธเธ‘เน€เธยเน€เธโ€”เน€เธเธ–เน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ…เน€เธยเน€เธเธเน€เธเธ”เน€เธย</span>
+          <span>⚠️ <strong>ระบบทำงานใน Demo Mode (Local Storage):</strong> ข้อมูลจะถูกบันทึกในเบราว์เซอร์เท่านั้น เชื่อมต่อ Supabase เพื่อบันทึกข้อมูลจริง</span>
           <span class="demo-banner-close" onclick="this.parentElement.style.display='none'">&times;</span>
         </div>
 
@@ -127,8 +127,8 @@
               <i data-lucide="dollar-sign"></i>
             </div>
             <div class="stat-details">
-              <span class="stat-label">เน€เธเธเน€เธเธเน€เธโ€เน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธยเน€เธเธ•เน€เธย (Revenue Today)</span>
-              <span id="stat-revenue-today" class="stat-value">เน€เธเธ0.00</span>
+              <span class="stat-label">ยอดขายวันนี้ (Revenue Today)</span>
+              <span id="stat-revenue-today" class="stat-value">฿0.00</span>
             </div>
           </div>
           <div class="stat-card glass-panel">
@@ -136,7 +136,7 @@
               <i data-lucide="receipt"></i>
             </div>
             <div class="stat-details">
-              <span class="stat-label">เน€เธยเน€เธเธ“เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธเธ”เน€เธเธ…เน€เธเธเน€เธเธ‘เน€เธยเน€เธยเน€เธเธ•เน€เธย (Orders Today)</span>
+              <span class="stat-label">จำนวนบิลวันนี้ (Orders Today)</span>
               <span id="stat-orders-today" class="stat-value">0</span>
             </div>
           </div>
@@ -145,7 +145,7 @@
               <i data-lucide="user-plus"></i>
             </div>
             <div class="stat-details">
-              <span class="stat-label">เน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธยเน€เธโ€ขเน€เธยเน€เธเธเน€เธโ€”เน€เธเธ‘เน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธโ€</span>
+              <span class="stat-label">ลูกค้าสะสมแต้มทั้งหมด</span>
               <span id="stat-total-customers" class="stat-value">0</span>
             </div>
           </div>
@@ -154,7 +154,7 @@
               <i data-lucide="award"></i>
             </div>
             <div class="stat-details">
-              <span class="stat-label">เน€เธยเน€เธยเน€เธยเน€เธยเน€เธโ€ขเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธโ€”เน€เธเธ‘เน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธโ€ (Points)</span>
+              <span class="stat-label">แจกแต้มสะสมทั้งหมด (Points)</span>
               <span id="stat-total-points" class="stat-value">0</span>
             </div>
           </div>
@@ -164,7 +164,7 @@
         <div class="dashboard-charts-row">
           <div class="chart-panel glass-panel">
             <div class="chart-header">
-              <h3>เน€เธเธเน€เธโ€“เน€เธเธ”เน€เธโ€ขเน€เธเธ”เน€เธเธเน€เธเธเน€เธโ€เน€เธยเน€เธเธ’เน€เธเธ 7 เน€เธเธเน€เธเธ‘เน€เธยเน€เธเธ…เน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธโ€</h3>
+              <h3>สถิติยอดขาย 7 วันล่าสุด</h3>
             </div>
             <div class="chart-canvas-wrapper">
               <canvas id="sales-chart"></canvas>
@@ -172,7 +172,7 @@
           </div>
           <div class="chart-panel glass-panel">
             <div class="chart-header">
-              <h3>เน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธโ€เน€เธยเน€เธเธ”เน€เธเธเน€เธเธ 5 เน€เธเธเน€เธเธ‘เน€เธยเน€เธโ€เน€เธเธ‘เน€เธยเน€เธยเน€เธเธเน€เธย</h3>
+              <h3>สินค้ายอดนิยม 5 อันดับแรก</h3>
             </div>
             <div id="popular-items-list" class="popular-list">
               <!-- Dynamically populated popular items -->
@@ -182,19 +182,19 @@
 
         <!-- Recent Transactions -->
         <div class="recent-orders-panel glass-panel">
-          <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">เน€เธเธเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธยเน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธเธ…เน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธโ€</h3>
+          <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">รายการสั่งซื้อล่าสุด</h3>
           <div class="table-wrapper">
             <table class="data-table">
               <thead>
                 <tr>
-                  <th>เน€เธเธเน€เธเธเน€เธเธ‘เน€เธเธเน€เธยเน€เธเธ”เน€เธเธ… (Order ID)</th>
-                  <th>เน€เธยเน€เธยเน€เธเธ‘เน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธยเน€เธเธ’เน€เธเธ</th>
-                  <th>เน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’</th>
-                  <th>เน€เธเธเน€เธเธเน€เธโ€เน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธเธเน€เธเธเน€เธเธ</th>
-                  <th>เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธโ€”เน€เธเธ•เน€เธยเน€เธยเน€เธโ€เน€เธย / เน€เธยเน€เธยเน€เธย</th>
-                  <th>เน€เธยเน€เธเธ“เน€เธเธเน€เธเธเน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธยเน€เธโ€เน€เธเธ</th>
-                  <th>เน€เธเธเน€เธเธ‘เน€เธยเน€เธโ€”เน€เธเธ•เน€เธย/เน€เธโฌเน€เธเธเน€เธเธ…เน€เธเธ’</th>
-                  <th>เน€เธเธเน€เธเธ’เน€เธเธเน€เธเธ…เน€เธเธเน€เธโฌเน€เธเธเน€เธเธ•เน€เธเธเน€เธโ€</th>
+                  <th>รหัสบิล (Order ID)</th>
+                  <th>พนักงานขาย</th>
+                  <th>ลูกค้า</th>
+                  <th>ยอดเงินรวม</th>
+                  <th>คะแนนที่ได้ / ใช้</th>
+                  <th>ชำระเงินโดย</th>
+                  <th>วันที่/เวลา</th>
+                  <th>รายละเอียด</th>
                 </tr>
               </thead>
               <tbody id="recent-orders-tbody">
@@ -214,12 +214,12 @@
             <div class="pos-search-bar">
               <div class="search-input-wrapper">
                 <i data-lucide="search"></i>
-                <input type="text" id="pos-product-search" class="input-control" placeholder="เน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธ’เน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’...">
+                <input type="text" id="pos-product-search" class="input-control" placeholder="ค้นหาชื่อสินค้า...">
               </div>
               <div class="pos-categories">
-                <button class="category-tab active" data-category="all">เน€เธโ€”เน€เธเธ‘เน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธโ€</button>
-                <button class="category-tab" data-category="coffee">เนยโ€ข เน€เธยเน€เธเธ’เน€เธยเน€เธย (Coffee)</button>
-                <button class="category-tab" data-category="bakery">เนยเธ…ย เน€เธโฌเน€เธยเน€เธโฌเน€เธยเน€เธเธเน€เธเธเน€เธเธ•เน€เธย (Bakery)</button>
+                <button class="category-tab active" data-category="all">ทั้งหมด</button>
+                <button class="category-tab" data-category="coffee">☕ กาแฟ (Coffee)</button>
+                <button class="category-tab" data-category="bakery">🥐 เบเกอรี่ (Bakery)</button>
               </div>
             </div>
 
@@ -234,7 +234,7 @@
           <!-- Shopping Cart Area (Right Panel) -->
           <div class="pos-cart-section glass-panel">
             <div class="cart-header">
-              <h3><i data-lucide="shopping-basket"></i> เน€เธเธเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธยเน€เธยเน€เธเธ—เน€เธยเน€เธเธ</h3>
+              <h3><i data-lucide="shopping-basket"></i> รายการสั่งซื้อ</h3>
               <span id="cart-item-count" class="cart-count">0</span>
             </div>
 
@@ -242,29 +242,29 @@
             <div id="cart-items" class="cart-items-scroll">
               <div class="cart-empty">
                 <i data-lucide="shopping-bag"></i>
-                <p>เน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธเธ•เน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธยเน€เธโ€ขเน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธเธ’</p>
+                <p>ไม่มีสินค้าในตะกร้า</p>
               </div>
             </div>
 
             <!-- Customer Loyalty Lookup & Registration Area -->
             <div class="cart-customer-section">
               <div class="customer-search-group">
-                <input type="text" id="cart-customer-phone" class="input-control" placeholder="เน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธ’เน€เธโฌเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธโ€”เน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธโ€”เน€เธยเน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’ (เน€เธโฌเน€เธยเน€เธยเน€เธย 0812345678)">
-                <button id="btn-search-customer" class="btn-search-sm" title="เน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธ’"><i data-lucide="search" style="width: 16px; height: 16px;"></i></button>
-                <button id="btn-add-customer-trigger" class="btn-search-sm" style="background-color: var(--success-light); color: var(--success); border-color: rgba(76,175,80,0.3);" title="เน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ’เน€เธยเน€เธเธ”เน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธย"><i data-lucide="user-plus" style="width: 16px; height: 16px;"></i></button>
+                <input type="text" id="cart-customer-phone" class="input-control" placeholder="ค้นหาเบอร์โทรศัพท์ลูกค้า (เช่น 0812345678)">
+                <button id="btn-search-customer" class="btn-search-sm" title="ค้นหา"><i data-lucide="search" style="width: 16px; height: 16px;"></i></button>
+                <button id="btn-add-customer-trigger" class="btn-search-sm" style="background-color: var(--success-light); color: var(--success); border-color: rgba(76,175,80,0.3);" title="สมัครสมาชิกใหม่"><i data-lucide="user-plus" style="width: 16px; height: 16px;"></i></button>
               </div>
 
               <!-- Visible only when customer is attached to cart -->
               <div id="cart-attached-customer" class="customer-loyalty-details hidden">
-                <button id="btn-clear-attached-customer" class="btn-clear-customer" title="เน€เธโฌเน€เธเธเน€เธเธ’เน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธย">&times;</button>
+                <button id="btn-clear-attached-customer" class="btn-clear-customer" title="เอาลูกค้าออก">&times;</button>
                 <div class="customer-loyalty-info">
-                  <span id="cart-cust-name" class="cust-name">เน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’: -</span>
-                  <span id="cart-cust-points" class="cust-pts">เน€เธยเน€เธโ€ขเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธเธ: 0</span>
+                  <span id="cart-cust-name" class="cust-name">ลูกค้า: -</span>
+                  <span id="cart-cust-points" class="cust-pts">แต้มสะสม: 0</span>
                 </div>
                 
                 <label id="point-redeem-container" class="redemption-toggle hidden">
                   <input type="checkbox" id="chk-redeem-points">
-                  <span>เน€เธยเน€เธยเน€เธย 10 เน€เธยเน€เธโ€ขเน€เธยเน€เธเธ เน€เธยเน€เธเธ…เน€เธยเน€เธเธเน€เธเธ‘เน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธเธ…เน€เธโ€ 60 เน€เธยเน€เธเธ’เน€เธโ€”</span>
+                  <span>ใช้ 10 แต้ม แลกรับส่วนลด 60 บาท</span>
                 </label>
               </div>
             </div>
@@ -272,33 +272,33 @@
             <!-- Order Financial Summary -->
             <div class="cart-summary">
               <div class="summary-row">
-                <span>เน€เธเธเน€เธเธ’เน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธเธ (Subtotal)</span>
-                <span id="summary-subtotal">เน€เธเธ0.00</span>
+                <span>ราคารวม (Subtotal)</span>
+                <span id="summary-subtotal">฿0.00</span>
               </div>
               <div class="summary-row">
-                <span>เน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธเธ…เน€เธโ€ (Discount)</span>
-                <span id="summary-discount" style="color: var(--danger);">เน€เธเธ0.00</span>
+                <span>ส่วนลด (Discount)</span>
+                <span id="summary-discount" style="color: var(--danger);">฿0.00</span>
               </div>
               <div id="row-points-earn" class="summary-row points-earn hidden">
-                <span>เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธโ€”เน€เธเธ•เน€เธยเน€เธยเน€เธโ€เน€เธยเน€เธเธเน€เธเธ‘เน€เธย (Points Earned)</span>
+                <span>คะแนนที่ได้รับ (Points Earned)</span>
                 <span id="summary-points-earn">+0.0</span>
               </div>
               <div class="summary-row total">
-                <span>เน€เธเธเน€เธเธเน€เธโ€เน€เธเธเน€เธเธเน€เธโ€”เน€เธยเน€เธเธ” (Total)</span>
-                <span id="summary-total">เน€เธเธ0.00</span>
+                <span>ยอดสุทธิ (Total)</span>
+                <span id="summary-total">฿0.00</span>
               </div>
 
               <div class="payment-methods">
                 <button class="payment-btn active" data-method="cash">
-                  <i data-lucide="banknote" style="width: 20px; height: 20px;"></i> เน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธเธเน€เธโ€ (Cash)
+                  <i data-lucide="banknote" style="width: 20px; height: 20px;"></i> เงินสด (Cash)
                 </button>
                 <button class="payment-btn" data-method="qr_code">
-                  <i data-lucide="qr-code" style="width: 20px; height: 20px;"></i> เน€เธเธเน€เธยเน€เธยเน€เธย QR (PromptPay)
+                  <i data-lucide="qr-code" style="width: 20px; height: 20px;"></i> สแกน QR (PromptPay)
                 </button>
               </div>
 
               <button id="btn-checkout-submit" class="btn btn-primary btn-checkout">
-                เน€เธยเน€เธเธ“เน€เธเธเน€เธเธเน€เธโฌเน€เธยเน€เธเธ”เน€เธย <i data-lucide="chevron-right"></i>
+                ชำระเงิน <i data-lucide="chevron-right"></i>
               </button>
             </div>
 
@@ -311,32 +311,32 @@
       <section id="customers-view" class="view-container hidden">
         <div class="view-header">
           <div class="view-title">
-            <h1>เน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธ’เน€เธยเน€เธเธ”เน€เธยเน€เธยเน€เธเธ…เน€เธเธเน€เธยเน€เธโ€ขเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธเธ (Loyalty Customers)</h1>
-            <p>เน€เธเธเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’ เน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ‘เน€เธโ€ขเน€เธเธ”เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ เน€เธยเน€เธเธ…เน€เธเธเน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ’เน€เธยเน€เธเธ”เน€เธย</p>
+            <h1>ระบบสมาชิกและแต้มสะสม (Loyalty Customers)</h1>
+            <p>รายชื่อลูกค้า ประวัติคะแนนสะสม และการสมัครสมาชิก</p>
           </div>
           <button id="btn-add-customer-header" class="btn btn-primary">
-            <i data-lucide="user-plus"></i> เน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ’เน€เธยเน€เธเธ”เน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธย
+            <i data-lucide="user-plus"></i> สมัครสมาชิกใหม่
           </button>
         </div>
 
         <div class="search-filter-row">
           <div class="search-input-wrapper">
             <i data-lucide="search"></i>
-            <input type="text" id="customer-search-input" class="input-control" placeholder="เน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธ’เน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธโ€เน€เธยเน€เธเธเน€เธเธ เน€เธยเน€เธเธ—เน€เธยเน€เธเธ เน€เธเธเน€เธเธเน€เธเธ—เน€เธเธ เน€เธโฌเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธโ€”เน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธโ€”เน€เธย...">
+            <input type="text" id="customer-search-input" class="input-control" placeholder="ค้นหาลูกค้าด้วย ชื่อ หรือ เบอร์โทรศัพท์...">
           </div>
         </div>
 
         <div class="customer-detail-grid">
           <!-- Customer List Table -->
           <div class="glass-panel" style="padding: 1.5rem; height: 500px; display: flex; flex-direction: column;">
-            <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">เน€เธเธเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ’เน€เธยเน€เธเธ”เน€เธย</h3>
+            <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">รายชื่อสมาชิก</h3>
             <div class="table-wrapper" style="flex: 1; overflow-y: auto;">
               <table class="data-table">
                 <thead>
                   <tr>
-                    <th>เน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’</th>
-                    <th>เน€เธโฌเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธโ€”เน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธโ€”เน€เธย</th>
-                    <th>เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธยเน€เธยเน€เธโฌเน€เธเธเน€เธเธ…เน€เธเธ—เน€เธเธ</th>
+                    <th>ชื่อลูกค้า</th>
+                    <th>เบอร์โทรศัพท์</th>
+                    <th>คะแนนคงเหลือ</th>
                   </tr>
                 </thead>
                 <tbody id="customers-tbody">
@@ -348,16 +348,16 @@
 
           <!-- Customer Loyalty Logs -->
           <div id="customer-points-log-card" class="glass-panel points-log-card hidden">
-            <h3 style="margin-bottom: 0.25rem; font-size: 1.1rem;">เน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ‘เน€เธโ€ขเน€เธเธ”เน€เธยเน€เธเธ’เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธย</h3>
+            <h3 style="margin-bottom: 0.25rem; font-size: 1.1rem;">ประวัติการใช้งานคะแนนของ</h3>
             <p id="selected-customer-title" style="color: var(--primary); font-weight: 600; margin-bottom: 1rem;"></p>
             <div class="table-wrapper">
               <table class="data-table">
                 <thead>
                   <tr>
-                    <th>เน€เธเธเน€เธเธ‘เน€เธยเน€เธโ€”เน€เธเธ•เน€เธย/เน€เธโฌเน€เธเธเน€เธเธ…เน€เธเธ’</th>
-                    <th>เน€เธยเน€เธเธเน€เธเธเน€เธโฌเน€เธย เน€เธโ€”เน€เธเธเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ’เน€เธเธ</th>
-                    <th>เน€เธยเน€เธเธ“เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธเธเน€เธยเน€เธยเน€เธย</th>
-                    <th>เน€เธเธเน€เธเธเน€เธโ€เน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ”เน€เธเธ…</th>
+                    <th>วันที่/เวลา</th>
+                    <th>ประเภทรายการ</th>
+                    <th>จำนวนคะแนน</th>
+                    <th>ยอดซื้อรวมในบิล</th>
                   </tr>
                 </thead>
                 <tbody id="points-history-tbody">
@@ -373,18 +373,18 @@
       <section id="inventory-view" class="view-container hidden">
         <div class="view-header">
           <div class="view-title">
-            <h1>เน€เธยเน€เธเธ‘เน€เธโ€เน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’ (Inventory Management)</h1>
-            <p>เน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธเธ เน€เธยเน€เธยเน€เธยเน€เธยเน€เธย เน€เธโฌเน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธเธ’เน€เธยเน€เธย เน€เธยเน€เธเธ…เน€เธเธ เน€เธโฌเน€เธยเน€เธโฌเน€เธยเน€เธเธเน€เธเธเน€เธเธ•เน€เธยเน€เธยเน€เธยเน€เธเธเน€เธยเน€เธเธ’เน€เธย</p>
+            <h1>จัดการสินค้า (Inventory Management)</h1>
+            <p>เพิ่ม แก้ไข เมนูกาแฟ และ เบเกอรี่ในร้าน</p>
           </div>
           <button id="btn-add-product-header" class="btn btn-primary">
-            <i data-lucide="plus-circle"></i> เน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธเธเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธเธเน€เธเธเน€เธย
+            <i data-lucide="plus-circle"></i> เพิ่มสินค้าใหม่
           </button>
         </div>
 
         <div class="search-filter-row">
           <div class="search-input-wrapper">
             <i data-lucide="search"></i>
-            <input type="text" id="inventory-search-input" class="input-control" placeholder="เน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธ’เน€เธโ€ขเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’...">
+            <input type="text" id="inventory-search-input" class="input-control" placeholder="ค้นหาตามชื่อสินค้า...">
           </div>
         </div>
 
@@ -394,12 +394,12 @@
             <table class="data-table">
               <thead>
                 <tr>
-                  <th>เน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’</th>
-                  <th>เน€เธเธเน€เธเธเน€เธเธเน€เธโ€เน€เธเธเน€เธเธเน€เธเธเน€เธย</th>
-                  <th>เน€เธเธเน€เธเธ’เน€เธยเน€เธเธ’ (เน€เธยเน€เธเธ’เน€เธโ€”)</th>
-                  <th>เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธโ€”เน€เธเธ•เน€เธยเน€เธยเน€เธโ€เน€เธยเน€เธเธเน€เธเธ‘เน€เธย (เน€เธเธเน€เธเธ“เน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธย)</th>
-                  <th>เน€เธเธเน€เธโ€“เน€เธเธ’เน€เธยเน€เธเธเน€เธยเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ’เน€เธเธ</th>
-                  <th>เน€เธยเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ‘เน€เธโ€เน€เธยเน€เธเธ’เน€เธเธ</th>
+                  <th>ชื่อสินค้า</th>
+                  <th>หมวดหมู่</th>
+                  <th>ราคา (บาท)</th>
+                  <th>คะแนนสะสมที่ได้รับ (สำหรับกาแฟ)</th>
+                  <th>สถานะการขาย</th>
+                  <th>การจัดการ</th>
                 </tr>
               </thead>
               <tbody id="inventory-tbody">
@@ -421,20 +421,20 @@
     <div class="modal-content">
       <button class="modal-close" id="btn-close-customer-modal">&times;</button>
       <div class="modal-header">
-        <h3>เน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ’เน€เธยเน€เธเธ”เน€เธยเน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธเธเน€เธเธเน€เธย</h3>
+        <h3>สมัครสมาชิกลูกค้าใหม่</h3>
       </div>
       <form id="customer-form" onsubmit="event.preventDefault();">
         <div class="form-group">
-          <label for="cust-name-input">เน€เธยเน€เธเธ—เน€เธยเน€เธเธ-เน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธยเน€เธเธเน€เธเธ…เน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’</label>
-          <input type="text" id="cust-name-input" class="input-control" placeholder="เน€เธโฌเน€เธยเน€เธยเน€เธย เน€เธยเน€เธเธเน€เธโ€เน€เธเธเน€เธเธเน€เธยเน€เธเธ’เน€เธเธ เน€เธเธเน€เธเธ‘เน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธย" required>
+          <label for="cust-name-input">ชื่อ-นามสกุลลูกค้า</label>
+          <input type="text" id="cust-name-input" class="input-control" placeholder="เช่น คุณสมชาย รักกาแฟ" required>
         </div>
         <div class="form-group">
-          <label for="cust-phone-input">เน€เธโฌเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธโ€”เน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธโ€”เน€เธย (เน€เธยเน€เธเธเน€เธเธ’เน€เธเธเน€เธเธเน€เธเธ’เน€เธเธ 10 เน€เธเธเน€เธเธ…เน€เธเธ‘เน€เธย)</label>
-          <input type="text" id="cust-phone-input" class="input-control" placeholder="เน€เธโฌเน€เธยเน€เธยเน€เธย 0812345678" pattern="[0-9]{10}" maxlength="10" required>
+          <label for="cust-phone-input">เบอร์โทรศัพท์ (ความยาว 10 หลัก)</label>
+          <input type="text" id="cust-phone-input" class="input-control" placeholder="เช่น 0812345678" pattern="[0-9]{10}" maxlength="10" required>
         </div>
         <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
-          <button type="button" class="btn btn-secondary" id="btn-cancel-customer-modal">เน€เธเธเน€เธยเน€เธโฌเน€เธเธ…เน€เธเธ”เน€เธย</button>
-          <button type="submit" class="btn btn-primary">เน€เธยเน€เธเธ‘เน€เธยเน€เธโ€”เน€เธเธ–เน€เธยเน€เธเธเน€เธเธเน€เธเธ’เน€เธยเน€เธเธ”เน€เธย</button>
+          <button type="button" class="btn btn-secondary" id="btn-cancel-customer-modal">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary">บันทึกสมาชิก</button>
         </div>
       </form>
     </div>
@@ -445,32 +445,32 @@
     <div class="modal-content">
       <button class="modal-close" id="btn-close-product-modal">&times;</button>
       <div class="modal-header">
-        <h3 id="product-modal-title">เน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธเธเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธเธเน€เธเธเน€เธย</h3>
+        <h3 id="product-modal-title">เพิ่มสินค้าใหม่</h3>
       </div>
       <form id="product-form" onsubmit="event.preventDefault();">
         <input type="hidden" id="product-id-input">
         <div class="form-group">
-          <label for="product-name-input">เน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’ (เน€เธย เน€เธเธ’เน€เธเธเน€เธเธ’เน€เธยเน€เธโ€”เน€เธเธ / เน€เธเธเน€เธเธ‘เน€เธยเน€เธยเน€เธเธเน€เธเธ)</label>
-          <input type="text" id="product-name-input" class="input-control" placeholder="เน€เธโฌเน€เธยเน€เธยเน€เธย Hot Latte (เน€เธเธ…เน€เธเธ’เน€เธโฌเน€เธโ€ขเน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธย)" required>
+          <label for="product-name-input">ชื่อสินค้า (ภาษาไทย / อังกฤษ)</label>
+          <input type="text" id="product-name-input" class="input-control" placeholder="เช่น Hot Latte (ลาเต้ร้อน)" required>
         </div>
         <div class="form-group">
-          <label for="product-category-input">เน€เธเธเน€เธเธเน€เธเธเน€เธโ€เน€เธเธเน€เธเธเน€เธเธเน€เธยเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’</label>
+          <label for="product-category-input">หมวดหมู่สินค้า</label>
           <select id="product-category-input" class="input-control" required style="background: rgba(0,0,0,0.5); color: var(--text-primary);">
-            <option value="coffee">เนยโ€ข เน€เธยเน€เธเธ’เน€เธยเน€เธย (Coffee) - เน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธยเน€เธโ€ขเน€เธยเน€เธเธเน€เธยเน€เธโ€เน€เธย</option>
-            <option value="bakery">เนยเธ…ย เน€เธโฌเน€เธยเน€เธโฌเน€เธยเน€เธเธเน€เธเธเน€เธเธ•เน€เธย (Bakery) - เน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธยเน€เธโ€ขเน€เธยเน€เธเธ</option>
+            <option value="coffee">☕ กาแฟ (Coffee) - สะสมแต้มได้</option>
+            <option value="bakery">🥐 เบเกอรี่ (Bakery) - ไม่สะสมแต้ม</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="product-price-input">เน€เธเธเน€เธเธ’เน€เธยเน€เธเธ’เน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’ (เน€เธยเน€เธเธ’เน€เธโ€”)</label>
-          <input type="number" id="product-price-input" class="input-control" placeholder="เน€เธโฌเน€เธยเน€เธยเน€เธย 60" min="0" step="0.5" required>
+          <label for="product-price-input">ราคาสินค้า (บาท)</label>
+          <input type="number" id="product-price-input" class="input-control" placeholder="เช่น 60" min="0" step="0.5" required>
         </div>
         <div class="form-group" id="points-reward-group">
-          <label for="product-points-input">เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธโ€”เน€เธเธ•เน€เธยเน€เธยเน€เธโ€เน€เธยเน€เธเธเน€เธเธ‘เน€เธย (เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธโ€ขเน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ)</label>
+          <label for="product-points-input">คะแนนสะสมที่ได้รับ (คะแนนต่อแก้ว)</label>
           <input type="number" id="product-points-input" class="input-control" placeholder="1.0" min="0" step="0.1" value="1.0">
         </div>
         <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
-          <button type="button" class="btn btn-secondary" id="btn-cancel-product-modal">เน€เธเธเน€เธยเน€เธโฌเน€เธเธ…เน€เธเธ”เน€เธย</button>
-          <button type="submit" class="btn btn-primary">เน€เธยเน€เธเธ‘เน€เธยเน€เธโ€”เน€เธเธ–เน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ…เน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’</button>
+          <button type="button" class="btn btn-secondary" id="btn-cancel-product-modal">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary">บันทึกข้อมูลสินค้า</button>
         </div>
       </form>
     </div>
@@ -481,7 +481,7 @@
     <div class="modal-content" style="width: 360px; padding: 2rem 1.5rem;">
       <button class="modal-close" id="btn-close-qr-modal">&times;</button>
       <div class="modal-header" style="text-align: center; margin-bottom: 1rem;">
-        <h3>เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธ“เน€เธเธเน€เธเธเน€เธโฌเน€เธยเน€เธเธ”เน€เธย PromptPay</h3>
+        <h3>สแกนชำระเงิน PromptPay</h3>
       </div>
       <div class="qr-modal-body">
         <div class="qr-code-placeholder">
@@ -514,11 +514,11 @@
           </div>
         </div>
         <div>
-          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.25rem;">เน€เธยเน€เธเธ“เน€เธยเน€เธเธเน€เธยเน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธยเน€เธเธ“เน€เธเธเน€เธเธ</p>
-          <span id="qr-pay-amount" class="qr-amount">เน€เธเธ0.00</span>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.25rem;">จำนวนเงินชำระ</p>
+          <span id="qr-pay-amount" class="qr-amount">฿0.00</span>
         </div>
         <button id="btn-qr-success-simulate" class="btn btn-primary" style="width: 100%;">
-          <i data-lucide="check-circle"></i> เน€เธเธเน€เธเธ—เน€เธยเน€เธเธเน€เธเธ‘เน€เธยเน€เธยเน€เธเธ“เน€เธเธเน€เธเธเน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธเธเน€เธเธ“เน€เธโฌเน€เธเธเน€เธยเน€เธย (Simulate)
+          <i data-lucide="check-circle"></i> ยืนยันชำระเงินสำเร็จ (Simulate)
         </button>
       </div>
     </div>
@@ -529,24 +529,24 @@
     <div class="modal-content" style="width: 400px;">
       <button class="modal-close" id="btn-close-cash-modal">&times;</button>
       <div class="modal-header">
-        <h3>เน€เธยเน€เธเธ“เน€เธเธเน€เธเธเน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธเธเน€เธโ€</h3>
+        <h3>ชำระเงินสด</h3>
       </div>
       <form id="cash-form" onsubmit="event.preventDefault();">
         <div class="form-group">
-          <label style="font-size: 1rem;">เน€เธเธเน€เธเธเน€เธโ€เน€เธโ€”เน€เธเธ•เน€เธยเน€เธโ€ขเน€เธยเน€เธเธเน€เธยเน€เธยเน€เธเธ“เน€เธเธเน€เธเธ: <strong id="cash-charge-total" style="color: var(--primary); font-size: 1.25rem;">เน€เธเธ0.00</strong></label>
+          <label style="font-size: 1rem;">ยอดที่ต้องชำระ: <strong id="cash-charge-total" style="color: var(--primary); font-size: 1.25rem;">฿0.00</strong></label>
         </div>
         <div class="form-group">
-          <label for="cash-received-input">เน€เธยเน€เธเธ“เน€เธยเน€เธเธเน€เธยเน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธโ€”เน€เธเธ•เน€เธยเน€เธเธเน€เธเธ‘เน€เธยเน€เธเธเน€เธเธ’ (เน€เธยเน€เธเธ’เน€เธโ€”)</label>
+          <label for="cash-received-input">จำนวนเงินที่รับมา (บาท)</label>
           <input type="number" id="cash-received-input" class="input-control" style="font-size: 1.5rem; font-weight: 700; color: var(--primary);" placeholder="0" min="0" step="1" required>
         </div>
         
         <div class="form-group" id="change-result-row" style="margin-top: 1rem; display: none;">
-          <label style="font-size: 1rem;">เน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธโ€”เน€เธเธเน€เธย: <strong id="cash-change-amount" style="color: var(--success); font-size: 1.8rem; font-family: var(--font-display);">เน€เธเธ0.00</strong></label>
+          <label style="font-size: 1rem;">เงินทอน: <strong id="cash-change-amount" style="color: var(--success); font-size: 1.8rem; font-family: var(--font-display);">฿0.00</strong></label>
         </div>
 
         <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
-          <button type="button" class="btn btn-secondary" id="btn-cancel-cash-modal">เน€เธเธเน€เธยเน€เธโฌเน€เธเธ…เน€เธเธ”เน€เธย</button>
-          <button type="submit" id="btn-cash-confirm" class="btn btn-primary" disabled>เน€เธเธเน€เธเธ—เน€เธยเน€เธเธเน€เธเธ‘เน€เธยเน€เธยเน€เธเธ“เน€เธเธเน€เธเธเน€เธโฌเน€เธยเน€เธเธ”เน€เธย</button>
+          <button type="button" class="btn btn-secondary" id="btn-cancel-cash-modal">ยกเลิก</button>
+          <button type="submit" id="btn-cash-confirm" class="btn btn-primary" disabled>ยืนยันชำระเงิน</button>
         </div>
       </form>
     </div>
@@ -557,7 +557,7 @@
     <div class="modal-content" style="width: 420px; padding: 1.5rem;">
       <button class="modal-close" id="btn-close-receipt-modal">&times;</button>
       <div class="modal-header" style="margin-bottom: 1rem;">
-        <h3>เน€เธยเน€เธยเน€เธโฌเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธเธเน€เธเธ‘เน€เธยเน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธเธเน€เธเธ”เน€เธโฌเน€เธเธ…เน€เธยเน€เธยเน€เธโ€”เน€เธเธเน€เธเธเน€เธยเน€เธเธ”เน€เธยเน€เธเธเน€เธย</h3>
+        <h3>ใบเสร็จรับเงินอิเล็กทรอนิกส์</h3>
       </div>
       
       <div class="receipt-paper" id="receipt-content">
@@ -566,10 +566,10 @@
       
       <div style="display: flex; justify-content: center; gap: 1rem;">
         <button class="btn btn-secondary" id="btn-print-receipt-simulate">
-          <i data-lucide="printer"></i> เน€เธยเน€เธเธ”เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธยเน€เธโฌเน€เธเธเน€เธเธเน€เธยเน€เธย (Print)
+          <i data-lucide="printer"></i> พิมพ์ใบเสร็จ (Print)
         </button>
         <button class="btn btn-primary" id="btn-close-receipt-done" style="flex: 1;">
-          เน€เธโฌเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ”เน€เธเธ…เน€เธยเน€เธเธเน€เธเธเน€เธย <i data-lucide="check"></i>
+          เสร็จสิ้นบิลใหม่ <i data-lucide="check"></i>
         </button>
       </div>
     </div>

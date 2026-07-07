@@ -107,10 +107,10 @@ async function handleLogin(e) {
 
   // Demo Login Validation
   if (usernameInput === "admin" && passwordInput === "admin") {
-    currentState.currentUser = { name: "เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธเธ‘เน€เธโ€เน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธยเน€เธเธ’เน€เธย A (Admin)", role: "admin" };
+    currentState.currentUser = { name: "ผู้จัดการร้าน A (Admin)", role: "admin" };
     sessionStorage.setItem("pos_cashier", JSON.stringify(currentState.currentUser));
     document.getElementById("display-user-name").textContent = currentState.currentUser.name;
-    showToast("เน€เธโฌเน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธโ€เน€เธยเน€เธเธเน€เธยเน€เธโ€”เน€เธโ€เน€เธเธเน€เธเธเน€เธยเน€เธเธเน€เธเธ“เน€เธโฌเน€เธเธเน€เธยเน€เธย", "success");
+    showToast("เข้าสู่ระบบในโหมดผู้ทดสอบสำเร็จ", "success");
     showMainApp();
     return;
   }
@@ -131,17 +131,17 @@ async function handleLogin(e) {
       };
       sessionStorage.setItem("pos_cashier", JSON.stringify(currentState.currentUser));
       document.getElementById("display-user-name").textContent = currentState.currentUser.name;
-      showToast("เน€เธโฌเน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธโฌเน€เธเธเน€เธเธ•เน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธเธ…เน€เธยเน€เธเธ", "success");
+      showToast("เข้าสู่ระบบเรียบร้อยแล้ว", "success");
       showMainApp();
       return;
     } catch (err) {
-      errorDiv.textContent = "เน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธ—เน€เธเธเน€เธเธเน€เธเธเน€เธเธ‘เน€เธเธเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธยเน€เธเธเน€เธยเน€เธโ€“เน€เธเธเน€เธยเน€เธโ€ขเน€เธยเน€เธเธเน€เธย: " + err.message;
+      errorDiv.textContent = "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง: " + err.message;
       errorDiv.style.display = "block";
       return;
     }
   }
 
-  errorDiv.textContent = "เน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธเธเน€เธเธเน€เธเธ—เน€เธเธเน€เธเธเน€เธเธเน€เธเธ‘เน€เธเธเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธยเน€เธเธเน€เธยเน€เธโ€“เน€เธเธเน€เธยเน€เธโ€ขเน€เธยเน€เธเธเน€เธย (เน€เธยเน€เธย Demo Mode เน€เธยเน€เธยเน€เธย admin/admin)";
+  errorDiv.textContent = "ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง (ใน Demo Mode ใช้ admin/admin)";
   errorDiv.style.display = "block";
 }
 
@@ -154,7 +154,7 @@ function handleLogout() {
   views.login.classList.remove("hidden");
   
   currentState.activeView = "login";
-  showToast("เน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธโฌเน€เธเธเน€เธเธ•เน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธเธ…เน€เธยเน€เธเธ", "info");
+  showToast("ออกจากระบบเรียบร้อยแล้ว", "info");
 }
 
 function showMainApp() {
@@ -232,7 +232,7 @@ async function loadDashboardData() {
 
     // Calculate revenue today
     const revenueToday = todayOrders.reduce((sum, o) => sum + parseFloat(o.final_amount), 0);
-    document.getElementById("stat-revenue-today").textContent = `เน€เธเธ${revenueToday.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    document.getElementById("stat-revenue-today").textContent = `฿${revenueToday.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     document.getElementById("stat-orders-today").textContent = todayOrders.length;
     document.getElementById("stat-total-customers").textContent = customers.length;
 
@@ -251,7 +251,7 @@ async function loadDashboardData() {
 
   } catch (err) {
     console.error("Error loading dashboard data:", err);
-    showToast("เน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธเธ’เน€เธเธเน€เธเธ’เน€เธเธเน€เธโ€“เน€เธโ€เน€เธเธ–เน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ…เน€เธยเน€เธโ€เน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธโ€เน€เธยเน€เธโ€เน€เธย", "error");
+    showToast("ไม่สามารถดึงข้อมูลแดชบอร์ดได้", "error");
   }
 }
 
@@ -263,7 +263,7 @@ function renderRecentOrders(orders) {
   const limitOrders = orders.slice(0, 10);
   
   if (limitOrders.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-muted);">เน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธเธ•เน€เธเธเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธยเน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธเธ…เน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธโ€</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-muted);">ไม่มีรายการสั่งซื้อล่าสุด</td></tr>`;
     return;
   }
 
@@ -276,13 +276,13 @@ function renderRecentOrders(orders) {
     const totalVal = parseFloat(order.final_amount);
     
     // Find customer name
-    let customerName = "เน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธโ€”เน€เธเธ‘เน€เธยเน€เธเธเน€เธยเน€เธย (Guest)";
+    let customerName = "ลูกค้าทั่วไป (Guest)";
     if (order.customer_id) {
       const cust = currentState.customers.find(c => c.id === order.customer_id);
       if (cust) customerName = cust.name;
     }
 
-    const payMethodText = order.payment_method === "cash" ? "เน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธเธเน€เธโ€" : "PromptPay";
+    const payMethodText = order.payment_method === "cash" ? "เงินสด" : "PromptPay";
     const pointsTxt = order.customer_id ? `+${order.points_earned} / -${order.points_redeemed}` : "-";
 
     const tr = document.createElement("tr");
@@ -290,12 +290,12 @@ function renderRecentOrders(orders) {
       <td style="font-weight: 600;">${order.id.substring(0, 8).toUpperCase()}</td>
       <td>${order.employee_name}</td>
       <td>${customerName}</td>
-      <td style="font-weight: bold; color: var(--primary);">เน€เธเธ${totalVal.toFixed(2)}</td>
+      <td style="font-weight: bold; color: var(--primary);">฿${totalVal.toFixed(2)}</td>
       <td>${pointsTxt}</td>
       <td>${payMethodText}</td>
       <td style="font-size: 0.8rem; color: var(--text-secondary);">${orderDate}</td>
       <td>
-        <button class="btn btn-secondary btn-search-sm" onclick="showReceiptDetail('${order.id}')" title="เน€เธโ€เน€เธเธเน€เธยเน€เธยเน€เธโฌเน€เธเธเน€เธเธเน€เธยเน€เธย">
+        <button class="btn btn-secondary btn-search-sm" onclick="showReceiptDetail('${order.id}')" title="ดูใบเสร็จ">
           <i data-lucide="receipt" style="width: 14px; height: 14px;"></i>
         </button>
       </td>
@@ -325,7 +325,7 @@ async function renderPopularItems(orders, products) {
   const popular = Object.keys(salesCount).map(pid => {
     const prod = products.find(p => p.id === pid);
     return {
-      name: prod ? prod.name : "เน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธโ€“เน€เธเธเน€เธยเน€เธเธ…เน€เธย",
+      name: prod ? prod.name : "สินค้าถูกลบ",
       category: prod ? prod.category : "unknown",
       qty: salesCount[pid],
       revenue: revenueMap[pid]
@@ -337,7 +337,7 @@ async function renderPopularItems(orders, products) {
   const top5 = popular.slice(0, 5);
 
   if (top5.length === 0) {
-    listEl.innerHTML = `<div style="text-align: center; color: var(--text-muted); margin: auto;">เน€เธเธเน€เธเธ‘เน€เธยเน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธเธ•เน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ…เน€เธยเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ’เน€เธเธ</div>`;
+    listEl.innerHTML = `<div style="text-align: center; color: var(--text-muted); margin: auto;">ยังไม่มีข้อมูลการขาย</div>`;
     return;
   }
 
@@ -347,9 +347,9 @@ async function renderPopularItems(orders, products) {
     div.innerHTML = `
       <div class="popular-item-info">
         <span class="popular-name">${item.name}</span>
-        <span class="popular-sales">${item.category === "coffee" ? "เนยโ€ข เน€เธยเน€เธเธ’เน€เธยเน€เธย" : "เนยเธ…ย เน€เธโฌเน€เธยเน€เธโฌเน€เธยเน€เธเธเน€เธเธเน€เธเธ•เน€เธย"} เนโฌเธ เน€เธยเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ…เน€เธยเน€เธเธ ${item.qty} เน€เธยเน€เธเธ”เน€เธยเน€เธย</span>
+        <span class="popular-sales">${item.category === "coffee" ? "☕ กาแฟ" : "🥐 เบเกอรี่"} • ขายแล้ว ${item.qty} ชิ้น</span>
       </div>
-      <span class="popular-revenue">เน€เธเธ${item.revenue.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+      <span class="popular-revenue">฿${item.revenue.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
     `;
     listEl.appendChild(div);
   });
@@ -392,7 +392,7 @@ function renderSalesChart(orders) {
     data: {
       labels: labels,
       datasets: [{
-        label: 'เน€เธเธเน€เธเธเน€เธโ€เน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธเธ’เน€เธเธเน€เธเธเน€เธเธ‘เน€เธย (เน€เธยเน€เธเธ’เน€เธโ€”)',
+        label: 'ยอดขายรายวัน (บาท)',
         data: datasetData,
         borderColor: '#c8963e',
         backgroundColor: 'rgba(200, 150, 62, 0.1)',
@@ -416,7 +416,7 @@ function renderSalesChart(orders) {
         tooltip: {
           callbacks: {
             label: function(context) {
-              return ` เน€เธเธเน€เธเธเน€เธโ€เน€เธยเน€เธเธ’เน€เธเธ: เน€เธเธ${context.raw.toLocaleString()}`;
+              return ` ยอดขาย: ฿${context.raw.toLocaleString()}`;
             }
           }
         }
@@ -454,7 +454,7 @@ async function loadPOSData() {
     
     renderPOSProducts(currentState.products);
   } catch (err) {
-    showToast("เน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธเธ’เน€เธเธเน€เธเธ’เน€เธเธเน€เธโ€“เน€เธโ€เน€เธเธ–เน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ…เน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธเธ“เน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธยเน€เธโ€เน€เธย", "error");
+    showToast("ไม่สามารถดึงข้อมูลสินค้าสำหรับขายได้", "error");
   }
 }
 
@@ -463,7 +463,7 @@ function renderPOSProducts(productsList) {
   grid.innerHTML = "";
 
   if (productsList.length === 0) {
-    grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-muted);">เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธโ€”เน€เธเธ•เน€เธยเน€เธโ€ขเน€เธยเน€เธเธเน€เธยเน€เธยเน€เธเธ’เน€เธเธ</div>`;
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-muted);">ไม่พบสินค้าที่ต้องการ</div>`;
     return;
   }
 
@@ -474,7 +474,7 @@ function renderPOSProducts(productsList) {
     // Choose icon category
     const icon = prod.category === "coffee" ? "coffee" : "cookie";
     const pointsBadge = prod.category === "coffee" && prod.points_reward > 0 
-      ? `<span class="product-reward-badge">+${prod.points_reward} เน€เธยเน€เธโ€ขเน€เธยเน€เธเธ</span>`
+      ? `<span class="product-reward-badge">+${prod.points_reward} แต้ม</span>`
       : "";
 
     card.innerHTML = `
@@ -484,7 +484,7 @@ function renderPOSProducts(productsList) {
       <div class="product-info">
         <div class="product-name" title="${prod.name}">${prod.name}</div>
         <div class="product-card-footer">
-          <span class="product-price">เน€เธเธ${parseFloat(prod.price).toFixed(2)}</span>
+          <span class="product-price">฿${parseFloat(prod.price).toFixed(2)}</span>
           ${pointsBadge}
         </div>
       </div>
@@ -585,7 +585,7 @@ function addToCart(product) {
     currentState.cart.push({ product: product, quantity: 1 });
   }
   updateCartUI();
-  showToast(`เน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธเธ ${product.name} เน€เธเธ…เน€เธยเน€เธโ€ขเน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธเธ’`, "success");
+  showToast(`เพิ่ม ${product.name} ลงตะกร้า`, "success");
 }
 
 function updateCartQty(productId, delta) {
@@ -604,7 +604,7 @@ function removeFromCart(productId) {
   const item = currentState.cart.find(i => i.product.id === productId);
   currentState.cart = currentState.cart.filter(i => i.product.id !== productId);
   updateCartUI();
-  if (item) showToast(`เน€เธโฌเน€เธเธเน€เธเธ’ ${item.product.name} เน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธโ€ขเน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธเธ’`, "info");
+  if (item) showToast(`เอา ${item.product.name} ออกจากตะกร้า`, "info");
 }
 
 function updateCartUI() {
@@ -618,7 +618,7 @@ function updateCartUI() {
     container.innerHTML = `
       <div class="cart-empty">
         <i data-lucide="shopping-bag"></i>
-        <p>เน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธเธ•เน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธยเน€เธโ€ขเน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธเธ’</p>
+        <p>ไม่มีสินค้าในตะกร้า</p>
       </div>
     `;
     lucide.createIcons();
@@ -635,15 +635,15 @@ function updateCartUI() {
     row.innerHTML = `
       <div class="cart-item-details">
         <div class="cart-item-name">${prod.name}</div>
-        <div class="cart-item-price">เน€เธเธ${parseFloat(prod.price).toFixed(2)}</div>
+        <div class="cart-item-price">฿${parseFloat(prod.price).toFixed(2)}</div>
       </div>
       <div class="cart-item-qty">
         <button class="btn-qty" onclick="updateCartQty('${prod.id}', -1)">-</button>
         <span class="qty-val">${item.quantity}</span>
         <button class="btn-qty" onclick="updateCartQty('${prod.id}', 1)">+</button>
       </div>
-      <div class="cart-item-subtotal">เน€เธเธ${subtotal.toFixed(2)}</div>
-      <button class="btn-remove-item" onclick="removeFromCart('${prod.id}')" title="เน€เธเธ…เน€เธยเน€เธเธเน€เธเธเน€เธย">
+      <div class="cart-item-subtotal">฿${subtotal.toFixed(2)}</div>
+      <button class="btn-remove-item" onclick="removeFromCart('${prod.id}')" title="ลบออก">
         <i data-lucide="trash-2" style="width: 15px; height: 15px;"></i>
       </button>
     `;
@@ -692,15 +692,15 @@ function updateCartTotals() {
   const finalAmount = Math.max(0, subtotal - discount);
 
   // Update DOM totals
-  document.getElementById("summary-subtotal").textContent = `เน€เธเธ${subtotal.toFixed(2)}`;
-  document.getElementById("summary-discount").textContent = `เน€เธเธ${discount.toFixed(2)}`;
-  document.getElementById("summary-total").textContent = `เน€เธเธ${finalAmount.toFixed(2)}`;
+  document.getElementById("summary-subtotal").textContent = `฿${subtotal.toFixed(2)}`;
+  document.getElementById("summary-discount").textContent = `฿${discount.toFixed(2)}`;
+  document.getElementById("summary-total").textContent = `฿${finalAmount.toFixed(2)}`;
 
   // Show earned points details if customer is selected
   const pointsRow = document.getElementById("row-points-earn");
   if (currentState.selectedCustomer && pointsEarned > 0) {
     pointsRow.classList.remove("hidden");
-    document.getElementById("summary-points-earn").textContent = `+${pointsEarned.toFixed(1)} เน€เธยเน€เธโ€ขเน€เธยเน€เธเธ`;
+    document.getElementById("summary-points-earn").textContent = `+${pointsEarned.toFixed(1)} แต้ม`;
   } else {
     pointsRow.classList.add("hidden");
   }
@@ -710,7 +710,7 @@ function updateCartTotals() {
 async function handlePOSCustomerSearch() {
   const phone = document.getElementById("cart-customer-phone").value.trim();
   if (!phone) {
-    showToast("เน€เธยเน€เธเธเน€เธเธเน€เธโ€เน€เธเธ’เน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธโฌเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธโ€”เน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธโ€”เน€เธยเน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’", "warning");
+    showToast("กรุณากรอกเบอร์โทรศัพท์ลูกค้า", "warning");
     return;
   }
 
@@ -718,12 +718,12 @@ async function handlePOSCustomerSearch() {
     const customer = await window.db.getCustomerByPhone(phone);
     if (customer) {
       attachCustomerToCart(customer);
-      showToast(`เน€เธยเน€เธยเน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’: ${customer.name}`, "success");
+      showToast(`พบลูกค้า: ${customer.name}`, "success");
     } else {
-      showToast("เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ…เน€เธเธเน€เธเธเน€เธเธ’เน€เธยเน€เธเธ”เน€เธยเน€เธโฌเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธเธ•เน€เธย", "error");
+      showToast("ไม่พบข้อมูลสมาชิกเบอร์นี้", "error");
     }
   } catch (err) {
-    showToast("เน€เธโฌเน€เธยเน€เธเธ”เน€เธโ€เน€เธยเน€เธยเน€เธเธเน€เธยเน€เธเธ”เน€เธโ€เน€เธยเน€เธเธ…เน€เธเธ’เน€เธโ€เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธ’เน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’", "error");
+    showToast("เกิดข้อผิดพลาดในการค้นหาลูกค้า", "error");
   }
 }
 
@@ -735,8 +735,8 @@ function attachCustomerToCart(customer) {
   const attachDiv = document.getElementById("cart-attached-customer");
   attachDiv.classList.remove("hidden");
   
-  document.getElementById("cart-cust-name").textContent = `เน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’: ${customer.name}`;
-  document.getElementById("cart-cust-points").textContent = `เน€เธยเน€เธโ€ขเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธเธ: ${parseFloat(customer.points || 0).toFixed(1)} เน€เธยเน€เธโ€ขเน€เธยเน€เธเธ`;
+  document.getElementById("cart-cust-name").textContent = `ลูกค้า: ${customer.name}`;
+  document.getElementById("cart-cust-points").textContent = `แต้มสะสม: ${parseFloat(customer.points || 0).toFixed(1)} แต้ม`;
 
   // Reset redemption checkbox
   document.getElementById("chk-redeem-points").checked = false;
@@ -759,15 +759,15 @@ function clearAttachedCustomer() {
 // POS Checkout execution
 function handleCheckoutSubmit() {
   if (currentState.cart.length === 0) {
-    showToast("เน€เธยเน€เธเธเน€เธเธเน€เธโ€เน€เธเธ’เน€เธโฌเน€เธเธ…เน€เธเธ—เน€เธเธเน€เธยเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธเธเน€เธยเน€เธโ€ขเน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธเธ’เน€เธยเน€เธยเน€เธเธเน€เธยเน€เธยเน€เธเธ“เน€เธเธเน€เธเธเน€เธโฌเน€เธยเน€เธเธ”เน€เธย", "warning");
+    showToast("กรุณาเลือกสินค้าใส่ตะกร้าก่อนชำระเงิน", "warning");
     return;
   }
 
-  const finalVal = parseFloat(document.getElementById("summary-total").textContent.replace("เน€เธเธ", ""));
+  const finalVal = parseFloat(document.getElementById("summary-total").textContent.replace("฿", ""));
   
   if (currentState.paymentMethod === "cash") {
     // Open Cash Payout Modal
-    document.getElementById("cash-charge-total").textContent = `เน€เธเธ${finalVal.toFixed(2)}`;
+    document.getElementById("cash-charge-total").textContent = `฿${finalVal.toFixed(2)}`;
     document.getElementById("cash-received-input").value = "";
     document.getElementById("change-result-row").style.display = "none";
     document.getElementById("btn-cash-confirm").disabled = true;
@@ -783,7 +783,7 @@ function handleCheckoutSubmit() {
       
       if (received >= finalVal) {
         changeRow.style.display = "block";
-        document.getElementById("cash-change-amount").textContent = `เน€เธเธ${change.toFixed(2)}`;
+        document.getElementById("cash-change-amount").textContent = `฿${change.toFixed(2)}`;
         confirmBtn.disabled = false;
       } else {
         changeRow.style.display = "none";
@@ -800,7 +800,7 @@ function handleCheckoutSubmit() {
     openModal("cash-modal");
   } else {
     // QR Code Payment
-    document.getElementById("qr-pay-amount").textContent = `เน€เธเธ${finalVal.toFixed(2)}`;
+    document.getElementById("qr-pay-amount").textContent = `฿${finalVal.toFixed(2)}`;
     
     // Sim success click
     document.getElementById("btn-qr-success-simulate").onclick = () => {
@@ -836,7 +836,7 @@ async function executeCheckoutOrder(paymentType) {
     const finalAmount = subtotal - discount;
 
     const orderData = {
-      employee_name: currentState.currentUser ? currentState.currentUser.name : "เน€เธยเน€เธยเน€เธเธ‘เน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ’เน€เธย",
+      employee_name: currentState.currentUser ? currentState.currentUser.name : "พนักงานขายหน้าร้าน",
       customer_id: currentState.selectedCustomer ? currentState.selectedCustomer.id : null,
       total_amount: subtotal,
       discount_amount: discount,
@@ -861,7 +861,7 @@ async function executeCheckoutOrder(paymentType) {
       closeModal("cash-modal");
     }
 
-    showToast("เน€เธยเน€เธเธ“เน€เธเธเน€เธเธเน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธยเน€เธเธ…เน€เธเธเน€เธยเน€เธเธ‘เน€เธยเน€เธโ€”เน€เธเธ–เน€เธยเน€เธเธเน€เธเธเน€เธโฌเน€เธโ€เน€เธเธเน€เธเธเน€เธยเน€เธเธเน€เธเธ“เน€เธโฌเน€เธเธเน€เธยเน€เธย", "success");
+    showToast("ชำระเงินและบันทึกออเดอร์สำเร็จ", "success");
     
     // Generate and display receipt
     displayReceipt(savedOrder, currentState.cart, paymentType);
@@ -873,7 +873,7 @@ async function executeCheckoutOrder(paymentType) {
 
   } catch (err) {
     console.error("Checkout execution error:", err);
-    showToast("เน€เธโฌเน€เธยเน€เธเธ”เน€เธโ€เน€เธยเน€เธยเน€เธเธเน€เธยเน€เธเธ”เน€เธโ€เน€เธยเน€เธเธ…เน€เธเธ’เน€เธโ€เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ‘เน€เธยเน€เธโ€”เน€เธเธ–เน€เธยเน€เธยเน€เธเธ”เน€เธเธ…: " + err.message, "error");
+    showToast("เกิดข้อผิดพลาดในการบันทึกบิล: " + err.message, "error");
   }
 }
 
@@ -882,7 +882,7 @@ function displayReceipt(order, cartItems, paymentType) {
   const content = document.getElementById("receipt-content");
   const dateStr = new Date(order.created_at || Date.now()).toLocaleString("th-TH");
   
-  let custName = "เน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธโ€”เน€เธเธ‘เน€เธยเน€เธเธเน€เธยเน€เธย (Guest)";
+  let custName = "ลูกค้าทั่วไป (Guest)";
   let pointDetails = "";
   
   if (currentState.selectedCustomer) {
@@ -894,11 +894,11 @@ function displayReceipt(order, cartItems, paymentType) {
     
     pointDetails = `
 <div class="receipt-divider"></div>
-<div class="receipt-row bold">เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธ’เน€เธยเน€เธเธ”เน€เธย (Loyalty Points)</div>
-<div class="receipt-row">เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธเธ•เน€เธย: <span style="text-align:right;">${initialPts.toFixed(1)} pt</span></div>
-<div class="receipt-row">เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธโ€”เน€เธเธ•เน€เธยเน€เธยเน€เธโ€เน€เธยเน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธเธ: <span style="text-align:right;">+${earnPts.toFixed(1)} pt</span></div>
-<div class="receipt-row">เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธ…เน€เธโ€เน€เธยเน€เธเธ…เน€เธย: <span style="text-align:right;">-${redeemPts.toFixed(1)} pt</span></div>
-<div class="receipt-row bold">เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธโ€”เน€เธยเน€เธเธ”: <span style="text-align:right; color:#c8963e;">${finalPts.toFixed(1)} pt</span></div>
+<div class="receipt-row bold">คะแนนสมาชิก (Loyalty Points)</div>
+<div class="receipt-row">คะแนนก่อนหน้านี้: <span style="text-align:right;">${initialPts.toFixed(1)} pt</span></div>
+<div class="receipt-row">คะแนนที่ได้เพิ่ม: <span style="text-align:right;">+${earnPts.toFixed(1)} pt</span></div>
+<div class="receipt-row">คะแนนใช้ลดแลก: <span style="text-align:right;">-${redeemPts.toFixed(1)} pt</span></div>
+<div class="receipt-row bold">คะแนนสะสมสุทธิ: <span style="text-align:right; color:#c8963e;">${finalPts.toFixed(1)} pt</span></div>
     `;
   }
 
@@ -908,7 +908,7 @@ function displayReceipt(order, cartItems, paymentType) {
 <div class="receipt-item-row">
   <div class="receipt-item-name">${item.product.name}</div>
   <div class="receipt-item-qty">x${item.quantity}</div>
-  <div class="receipt-item-sub">เน€เธเธ${(item.product.price * item.quantity).toFixed(2)}</div>
+  <div class="receipt-item-sub">฿${(item.product.price * item.quantity).toFixed(2)}</div>
 </div>
     `;
   });
@@ -917,18 +917,18 @@ function displayReceipt(order, cartItems, paymentType) {
 
   content.innerHTML = `
     <div class="receipt-header">
-      <div class="receipt-shop-name">เนยโ€ข ANTIGRAVITY CAFE เนยเธ…ย</div>
-      <div style="font-size:0.75rem; color:#666;">เน€เธเธเน€เธเธ’เน€เธยเน€เธเธ’เน€เธเธเน€เธเธ“เน€เธยเน€เธเธ‘เน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธยเน€เธเธเน€เธยเน€เธย เน€เธยเน€เธโ€”เน€เธเธ. 02-123-4567</div>
-      <div style="font-size:0.7rem; color:#888; margin-top:0.25rem;">เน€เธเธเน€เธเธ‘เน€เธยเน€เธโฌเน€เธเธเน€เธเธ…เน€เธเธ’: ${dateStr}</div>
-      <div style="font-size:0.7rem; color:#888;">เน€เธโฌเน€เธเธ…เน€เธยเน€เธโ€”เน€เธเธ•เน€เธยเน€เธยเน€เธเธ”เน€เธเธ…: ${order.id.toUpperCase()}</div>
-      <div style="font-size:0.7rem; color:#888;">เน€เธยเน€เธยเน€เธเธ‘เน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธยเน€เธเธ’เน€เธเธ: ${order.employee_name}</div>
+      <div class="receipt-shop-name">☕ ANTIGRAVITY CAFE 🥐</div>
+      <div style="font-size:0.75rem; color:#666;">สาขาสำนักงานใหญ่ โทร. 02-123-4567</div>
+      <div style="font-size:0.7rem; color:#888; margin-top:0.25rem;">วันเวลา: ${dateStr}</div>
+      <div style="font-size:0.7rem; color:#888;">เลขที่บิล: ${order.id.toUpperCase()}</div>
+      <div style="font-size:0.7rem; color:#888;">พนักงานขาย: ${order.employee_name}</div>
     </div>
     
     <div class="receipt-divider"></div>
     <div class="receipt-row bold title-row">
-      <div class="receipt-item-name">เน€เธเธเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’</div>
-      <div class="receipt-item-qty">เน€เธยเน€เธเธ“เน€เธยเน€เธเธเน€เธย</div>
-      <div class="receipt-item-sub">เน€เธเธเน€เธเธเน€เธโ€เน€เธโฌเน€เธยเน€เธเธ”เน€เธย</div>
+      <div class="receipt-item-name">รายการสินค้า</div>
+      <div class="receipt-item-qty">จำนวน</div>
+      <div class="receipt-item-sub">ยอดเงิน</div>
     </div>
     <div class="receipt-divider"></div>
     
@@ -936,27 +936,27 @@ function displayReceipt(order, cartItems, paymentType) {
     
     <div class="receipt-divider"></div>
     <div class="receipt-row">
-      <div>เน€เธเธเน€เธเธ’เน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’ (Subtotal)</div>
-      <div>เน€เธเธ${parseFloat(order.total_amount).toFixed(2)}</div>
+      <div>ราคารวมสินค้า (Subtotal)</div>
+      <div>฿${parseFloat(order.total_amount).toFixed(2)}</div>
     </div>
     <div class="receipt-row" style="color:red;">
-      <div>เน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธเธ…เน€เธโ€ (Discount)</div>
-      <div>-เน€เธเธ${parseFloat(order.discount_amount).toFixed(2)}</div>
+      <div>ส่วนลด (Discount)</div>
+      <div>-฿${parseFloat(order.discount_amount).toFixed(2)}</div>
     </div>
     <div class="receipt-row bold" style="font-size:1.05rem; margin-top:0.25rem;">
-      <div>เน€เธเธเน€เธเธเน€เธโ€เน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธโ€”เน€เธยเน€เธเธ” (Total)</div>
-      <div>เน€เธเธ${parseFloat(order.final_amount).toFixed(2)}</div>
+      <div>ยอดรวมสุทธิ (Total)</div>
+      <div>฿${parseFloat(order.final_amount).toFixed(2)}</div>
     </div>
     
     <div class="receipt-divider"></div>
     <div class="receipt-row">
-      <div>เน€เธยเน€เธยเน€เธเธเน€เธยเน€เธโ€”เน€เธเธ’เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธโฌเน€เธยเน€เธเธ”เน€เธย</div>
+      <div>ช่องทางจ่ายเงิน</div>
       <div>${payTxt}</div>
     </div>
     
     <div class="receipt-divider"></div>
     <div class="receipt-row">
-      <div>เน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’</div>
+      <div>ชื่อลูกค้า</div>
       <div>${custName}</div>
     </div>
     
@@ -964,13 +964,13 @@ function displayReceipt(order, cartItems, paymentType) {
     
     <div class="receipt-divider"></div>
     <div style="text-align:center; font-size:0.75rem; margin-top:1rem; font-weight:600; color:#555;">
-      เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธเธเน€เธโ€เน€เธโ€”เน€เธเธ•เน€เธยเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธ”เน€เธยเน€เธเธ’เน€เธเธเน€เธยเน€เธเธเน€เธเธ‘เน€เธย / Thank you!
+      ขอบคุณที่ใช้บริการครับ / Thank you!
     </div>
   `;
 
   // Bind printer simulation
   document.getElementById("btn-print-receipt-simulate").onclick = () => {
-    showToast("เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ“เน€เธเธเน€เธเธ‘เน€เธยเน€เธยเน€เธยเน€เธเธ”เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธ‘เน€เธยเน€เธโฌเน€เธยเน€เธเธเน€เธเธ—เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธเธ”เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธ’เน€เธเธเน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธเธ“เน€เธโฌเน€เธเธเน€เธยเน€เธย (Simulated thermal print)", "success");
+    showToast("ส่งคำสั่งพิมพ์ไปยังเครื่องพิมพ์ความร้อนสำเร็จ (Simulated thermal print)", "success");
   };
 
   // Close handle
@@ -1010,7 +1010,7 @@ async function showReceiptDetail(orderId) {
     displayReceipt(order, cartItems, order.payment_method);
     currentState.selectedCustomer = null; // Clean up
   } catch (err) {
-    showToast("เน€เธโ€เน€เธเธ–เน€เธยเน€เธเธเน€เธเธ’เน€เธเธเน€เธเธ…เน€เธเธเน€เธโฌเน€เธเธเน€เธเธ•เน€เธเธเน€เธโ€เน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ‘เน€เธโ€ขเน€เธเธ”เน€เธยเน€เธยเน€เธโฌเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธเธ…เน€เธยเน€เธเธเน€เธโฌเน€เธเธเน€เธเธ…เน€เธเธ", "error");
+    showToast("ดึงรายละเอียดประวัติใบเสร็จล้มเหลว", "error");
   }
 }
 
@@ -1023,7 +1023,7 @@ async function loadCustomersData() {
     renderCustomerList(list);
     document.getElementById("customer-points-log-card").classList.add("hidden");
   } catch (err) {
-    showToast("เน€เธโฌเน€เธยเน€เธเธ”เน€เธโ€เน€เธยเน€เธยเน€เธเธเน€เธยเน€เธเธ”เน€เธโ€เน€เธยเน€เธเธ…เน€เธเธ’เน€เธโ€เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธยเน€เธเธเน€เธเธ…เน€เธโ€เน€เธเธเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’", "error");
+    showToast("เกิดข้อผิดพลาดในการโหลดรายชื่อลูกค้า", "error");
   }
 }
 
@@ -1032,7 +1032,7 @@ function renderCustomerList(customerList) {
   tbody.innerHTML = "";
 
   if (customerList.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="3" style="text-align:center; color:var(--text-muted);">เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ’เน€เธยเน€เธเธ”เน€เธยเน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="3" style="text-align:center; color:var(--text-muted);">ไม่พบรายชื่อสมาชิกลูกค้า</td></tr>`;
     return;
   }
 
@@ -1042,7 +1042,7 @@ function renderCustomerList(customerList) {
     tr.innerHTML = `
       <td style="font-weight:600;"><i data-lucide="user" style="width:14px; height:14px; margin-right:6px; vertical-align:middle; color:var(--primary);"></i>${cust.name}</td>
       <td>${cust.phone}</td>
-      <td style="font-weight:700; color:var(--primary);">${parseFloat(cust.points || 0).toFixed(1)} เน€เธยเน€เธโ€ขเน€เธยเน€เธเธ</td>
+      <td style="font-weight:700; color:var(--primary);">${parseFloat(cust.points || 0).toFixed(1)} แต้ม</td>
     `;
     tr.addEventListener("click", () => showCustomerPointsHistory(cust));
     tbody.appendChild(tr);
@@ -1083,7 +1083,7 @@ async function handleCustomerRegister(e) {
     const newCustomer = { name, phone };
     const saved = await window.db.addCustomer(newCustomer);
     
-    showToast(`เน€เธเธ…เน€เธยเน€เธโ€”เน€เธเธเน€เธโฌเน€เธยเน€เธเธ•เน€เธเธเน€เธยเน€เธเธ…เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธ’ ${saved.name} เน€เธเธเน€เธเธ“เน€เธโฌเน€เธเธเน€เธยเน€เธย!`, "success");
+    showToast(`ลงทะเบียนลูกค้า ${saved.name} สำเร็จ!`, "success");
     closeModal("customer-modal");
 
     // Refresh view states
@@ -1095,7 +1095,7 @@ async function handleCustomerRegister(e) {
       document.getElementById("cart-customer-phone").value = saved.phone;
     }
   } catch (err) {
-    showToast(err.message || "เน€เธโฌเน€เธยเน€เธเธ”เน€เธโ€เน€เธยเน€เธยเน€เธเธเน€เธยเน€เธเธ”เน€เธโ€เน€เธยเน€เธเธ…เน€เธเธ’เน€เธโ€เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธเธ…เน€เธยเน€เธโ€”เน€เธเธเน€เธโฌเน€เธยเน€เธเธ•เน€เธเธเน€เธย", "error");
+    showToast(err.message || "เกิดข้อผิดพลาดในการลงทะเบียน", "error");
   }
 }
 
@@ -1106,13 +1106,13 @@ async function showCustomerPointsHistory(customer) {
     const panel = document.getElementById("customer-points-log-card");
     panel.classList.remove("hidden");
     
-    document.getElementById("selected-customer-title").textContent = `${customer.name} (เน€เธยเน€เธโ€”เน€เธเธ. ${customer.phone})`;
+    document.getElementById("selected-customer-title").textContent = `${customer.name} (โทร. ${customer.phone})`;
     
     const tbody = document.getElementById("points-history-tbody");
     tbody.innerHTML = "";
 
     if (logs.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">เน€เธเธเน€เธเธ‘เน€เธยเน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธเธ•เน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ‘เน€เธโ€ขเน€เธเธ”เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">ยังไม่มีประวัติคะแนนสะสม</td></tr>`;
       return;
     }
 
@@ -1120,9 +1120,9 @@ async function showCustomerPointsHistory(customer) {
       const logDate = new Date(log.created_at).toLocaleString("th-TH");
       const isEarn = log.transaction_type === "earn";
       const badgeClass = isEarn ? "badge-success" : "badge-danger";
-      const typeTxt = isEarn ? "เน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธยเน€เธโ€ขเน€เธยเน€เธเธ" : "เน€เธยเน€เธเธ…เน€เธยเน€เธเธเน€เธเธ‘เน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธเธ…เน€เธโ€";
+      const typeTxt = isEarn ? "สะสมแต้ม" : "แลกรับส่วนลด";
       const valTxt = isEarn ? `+${parseFloat(log.points).toFixed(1)}` : `${parseFloat(log.points).toFixed(1)}`;
-      const orderTotal = log.orders ? `เน€เธเธ${parseFloat(log.orders.total_amount).toFixed(2)}` : "-";
+      const orderTotal = log.orders ? `฿${parseFloat(log.orders.total_amount).toFixed(2)}` : "-";
 
       const tr = document.createElement("tr");
       tr.innerHTML = `
@@ -1136,7 +1136,7 @@ async function showCustomerPointsHistory(customer) {
 
   } catch (err) {
     console.error("Error loading points logs:", err);
-    showToast("เน€เธยเน€เธเธเน€เธเธ…เน€เธโ€เน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ‘เน€เธโ€ขเน€เธเธ”เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธเธ…เน€เธยเน€เธเธเน€เธโฌเน€เธเธเน€เธเธ…เน€เธเธ", "error");
+    showToast("โหลดประวัติคะแนนสะสมล้มเหลว", "error");
   }
 }
 
@@ -1148,7 +1148,7 @@ async function loadInventoryData() {
     currentState.products = list;
     renderInventoryTable(list);
   } catch (err) {
-    showToast("เน€เธโ€เน€เธเธ–เน€เธยเน€เธเธเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ—เน€เธยเน€เธเธเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธเธ…เน€เธยเน€เธเธเน€เธโฌเน€เธเธเน€เธเธ…เน€เธเธ", "error");
+    showToast("ดึงรายชื่อสินค้าล้มเหลว", "error");
   }
 }
 
@@ -1157,20 +1157,20 @@ function renderInventoryTable(productsList) {
   tbody.innerHTML = "";
 
   if (productsList.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--text-muted);">เน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธเธ•เน€เธเธเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ’เน€เธเธเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธยเน€เธยเน€เธเธ…เน€เธเธ‘เน€เธย</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--text-muted);">ไม่มีรายการสินค้าในคลัง</td></tr>`;
     return;
   }
 
   productsList.forEach(prod => {
-    const pointsTxt = prod.category === "coffee" ? `${parseFloat(prod.points_reward).toFixed(1)} เน€เธยเน€เธโ€ขเน€เธยเน€เธเธ/เน€เธยเน€เธยเน€เธยเน€เธเธ` : "-";
-    const categoryTxt = prod.category === "coffee" ? "เนยโ€ข เน€เธยเน€เธเธ’เน€เธยเน€เธย (Coffee)" : "เนยเธ…ย เน€เธโฌเน€เธยเน€เธโฌเน€เธยเน€เธเธเน€เธเธเน€เธเธ•เน€เธย (Bakery)";
+    const pointsTxt = prod.category === "coffee" ? `${parseFloat(prod.points_reward).toFixed(1)} แต้ม/แก้ว` : "-";
+    const categoryTxt = prod.category === "coffee" ? "☕ กาแฟ (Coffee)" : "🥐 เบเกอรี่ (Bakery)";
     const checked = prod.is_available ? "checked" : "";
 
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td style="font-weight:600;">${prod.name}</td>
       <td style="color:var(--text-secondary);">${categoryTxt}</td>
-      <td style="font-weight:bold; color:var(--primary);">เน€เธเธ${parseFloat(prod.price).toFixed(2)}</td>
+      <td style="font-weight:bold; color:var(--primary);">฿${parseFloat(prod.price).toFixed(2)}</td>
       <td>${pointsTxt}</td>
       <td>
         <label class="switch">
@@ -1179,7 +1179,7 @@ function renderInventoryTable(productsList) {
         </label>
       </td>
       <td>
-        <button class="btn btn-secondary btn-search-sm" onclick="editProductTrigger('${prod.id}')" title="เน€เธยเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’">
+        <button class="btn btn-secondary btn-search-sm" onclick="editProductTrigger('${prod.id}')" title="แก้ไขสินค้า">
           <i data-lucide="edit" style="width:14px; height:14px;"></i>
         </button>
       </td>
@@ -1211,7 +1211,7 @@ function initInventoryEventListeners() {
   document.getElementById("btn-add-product-header").addEventListener("click", () => {
     document.getElementById("product-form").reset();
     document.getElementById("product-id-input").value = "";
-    document.getElementById("product-modal-title").textContent = "เน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธเธเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธเธเน€เธเธเน€เธย";
+    document.getElementById("product-modal-title").textContent = "เพิ่มสินค้าใหม่";
     document.getElementById("points-reward-group").style.display = "flex";
     openModal("product-modal");
   });
@@ -1245,28 +1245,28 @@ async function handleProductSave(e) {
     if (id) {
       // Edit
       await window.db.updateProduct(id, pData);
-      showToast("เน€เธยเน€เธยเน€เธยเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ…เน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธเธเน€เธเธ“เน€เธโฌเน€เธเธเน€เธยเน€เธย", "success");
+      showToast("แก้ไขข้อมูลสินค้าสำเร็จ", "success");
     } else {
       // Create new
       await window.db.addProduct(pData);
-      showToast("เน€เธโฌเน€เธยเน€เธเธ”เน€เธยเน€เธเธเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธเธเน€เธเธ“เน€เธโฌเน€เธเธเน€เธยเน€เธย", "success");
+      showToast("เพิ่มสินค้าใหม่สำเร็จ", "success");
     }
     
     closeModal("product-modal");
     loadInventoryData();
   } catch (err) {
-    showToast("เน€เธยเน€เธเธ‘เน€เธยเน€เธโ€”เน€เธเธ–เน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธเน€เธเธเน€เธเธ…เน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธเธ…เน€เธยเน€เธเธเน€เธโฌเน€เธเธเน€เธเธ…เน€เธเธ: " + err.message, "error");
+    showToast("บันทึกข้อมูลสินค้าล้มเหลว: " + err.message, "error");
   }
 }
 
 async function toggleProductAvailability(id, checked) {
   try {
     await window.db.updateProduct(id, { is_available: checked });
-    const pName = currentState.products.find(p => p.id === id)?.name || "เน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’";
-    const statusTxt = checked ? "เน€เธโฌเน€เธยเน€เธเธ”เน€เธโ€เน€เธยเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ…เน€เธยเน€เธเธ" : "เน€เธยเน€เธเธ”เน€เธโ€เน€เธยเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ‘เน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธเธ’เน€เธเธ";
+    const pName = currentState.products.find(p => p.id === id)?.name || "สินค้า";
+    const statusTxt = checked ? "เปิดขายแล้ว" : "ปิดการขายชั่วคราว";
     showToast(`${pName}: ${statusTxt}`, "info");
   } catch (err) {
-    showToast("เน€เธโฌเน€เธยเน€เธเธ…เน€เธเธ•เน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธโ€“เน€เธเธ’เน€เธยเน€เธเธเน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธเธเน€เธยเน€เธเธเน€เธเธ“เน€เธโฌเน€เธเธเน€เธยเน€เธย", "error");
+    showToast("เปลี่ยนสถานะสินค้าไม่สำเร็จ", "error");
     // Revert check
     document.getElementById(`toggle-avail-${id}`).checked = !checked;
   }
@@ -1283,7 +1283,7 @@ function editProductTrigger(id) {
   document.getElementById("product-points-input").value = prod.points_reward;
   document.getElementById("product-image-input").value = prod.image_url || "";
   
-  document.getElementById("product-modal-title").textContent = "เน€เธยเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธเธ’เน€เธเธเน€เธเธ…เน€เธเธเน€เธโฌเน€เธเธเน€เธเธ•เน€เธเธเน€เธโ€เน€เธเธเน€เธเธ”เน€เธยเน€เธยเน€เธยเน€เธเธ’";
+  document.getElementById("product-modal-title").textContent = "แก้ไขรายละเอียดสินค้า";
   
   const ptsGroup = document.getElementById("points-reward-group");
   if (prod.category === "bakery") {
