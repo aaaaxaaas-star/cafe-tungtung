@@ -1,21 +1,21 @@
 // Database Adapter Layer (Supabase / LocalStorage Fallback)
 
 const MOCK_PRODUCTS = [
-  { id: "p1", name: "Espresso (เอสเพรสโซ่)", category: "coffee", price: 50.0, points_reward: 1.0, is_available: true },
-  { id: "p2", name: "Americano (อเมริกาโน่)", category: "coffee", price: 55.0, points_reward: 1.0, is_available: true },
-  { id: "p3", name: "Latte (ลาเต้)", category: "coffee", price: 65.0, points_reward: 1.0, is_available: true },
-  { id: "p4", name: "Cappuccino (คาปูชิโน่)", category: "coffee", price: 65.0, points_reward: 1.0, is_available: true },
-  { id: "p5", name: "Caramel Macchiato (คาราเมลมัคคิอาโต้)", category: "coffee", price: 75.0, points_reward: 1.0, is_available: true },
-  { id: "p6", name: "Butter Croissant (ครัวซองต์เนยสด)", category: "bakery", price: 60.0, points_reward: 0.0, is_available: true },
-  { id: "p7", name: "Chocolate Cake (เค้กช็อกโกแลต)", category: "bakery", price: 85.0, points_reward: 0.0, is_available: true },
-  { id: "p8", name: "Almond Croissant (ครัวซองต์อัลมอนด์)", category: "bakery", price: 75.0, points_reward: 0.0, is_available: true },
-  { id: "p9", name: "Blueberry Muffin (มัฟฟินบลูเบอร์รี่)", category: "bakery", price: 55.0, points_reward: 0.0, is_available: true },
+  { id: "p1", name: "Espresso (เน€เธโฌเน€เธเธเน€เธเธเน€เธโฌเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธย)", category: "coffee", price: 50.0, points_reward: 1.0, is_available: true },
+  { id: "p2", name: "Americano (เน€เธเธเน€เธโฌเน€เธเธเน€เธเธเน€เธเธ”เน€เธยเน€เธเธ’เน€เธยเน€เธยเน€เธย)", category: "coffee", price: 55.0, points_reward: 1.0, is_available: true },
+  { id: "p3", name: "Latte (เน€เธเธ…เน€เธเธ’เน€เธโฌเน€เธโ€ขเน€เธย)", category: "coffee", price: 65.0, points_reward: 1.0, is_available: true },
+  { id: "p4", name: "Cappuccino (เน€เธยเน€เธเธ’เน€เธยเน€เธเธเน€เธยเน€เธเธ”เน€เธยเน€เธยเน€เธย)", category: "coffee", price: 65.0, points_reward: 1.0, is_available: true },
+  { id: "p5", name: "Caramel Macchiato (เน€เธยเน€เธเธ’เน€เธเธเน€เธเธ’เน€เธโฌเน€เธเธเน€เธเธ…เน€เธเธเน€เธเธ‘เน€เธยเน€เธยเน€เธเธ”เน€เธเธเน€เธเธ’เน€เธยเน€เธโ€ขเน€เธย)", category: "coffee", price: 75.0, points_reward: 1.0, is_available: true },
+  { id: "p6", name: "Butter Croissant (เน€เธยเน€เธเธเน€เธเธ‘เน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธโ€ขเน€เธยเน€เธโฌเน€เธยเน€เธเธเน€เธเธเน€เธโ€)", category: "bakery", price: 60.0, points_reward: 0.0, is_available: true },
+  { id: "p7", name: "Chocolate Cake (เน€เธโฌเน€เธยเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธ…เน€เธโ€ข)", category: "bakery", price: 85.0, points_reward: 0.0, is_available: true },
+  { id: "p8", name: "Almond Croissant (เน€เธยเน€เธเธเน€เธเธ‘เน€เธเธเน€เธยเน€เธเธเน€เธยเน€เธโ€ขเน€เธยเน€เธเธเน€เธเธ‘เน€เธเธ…เน€เธเธเน€เธเธเน€เธยเน€เธโ€เน€เธย)", category: "bakery", price: 75.0, points_reward: 0.0, is_available: true },
+  { id: "p9", name: "Blueberry Muffin (เน€เธเธเน€เธเธ‘เน€เธยเน€เธยเน€เธเธ”เน€เธยเน€เธยเน€เธเธ…เน€เธเธเน€เธโฌเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธเธเน€เธเธ•เน€เธย)", category: "bakery", price: 55.0, points_reward: 0.0, is_available: true },
 ];
 
 const MOCK_CUSTOMERS = [
-  { id: "c1", name: "สมศักดิ์ ใจดี", phone: "0812345678", points: 25.0, created_at: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString() },
-  { id: "c2", name: "สมหญิง รักสงบ", phone: "0898765432", points: 8.0, created_at: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString() },
-  { id: "c3", name: "สมชาย ยอดนักสู้", phone: "0855551234", points: 0.0, created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString() },
+  { id: "c1", name: "เน€เธเธเน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธโ€เน€เธเธ”เน€เธย เน€เธยเน€เธยเน€เธโ€เน€เธเธ•", phone: "0812345678", points: 25.0, created_at: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString() },
+  { id: "c2", name: "เน€เธเธเน€เธเธเน€เธเธเน€เธยเน€เธเธ”เน€เธย เน€เธเธเน€เธเธ‘เน€เธยเน€เธเธเน€เธยเน€เธย", phone: "0898765432", points: 8.0, created_at: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString() },
+  { id: "c3", name: "เน€เธเธเน€เธเธเน€เธยเน€เธเธ’เน€เธเธ เน€เธเธเน€เธเธเน€เธโ€เน€เธยเน€เธเธ‘เน€เธยเน€เธเธเน€เธเธเน€เธย", phone: "0855551234", points: 0.0, created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString() },
 ];
 
 class DBAdapter {
@@ -70,7 +70,7 @@ class DBAdapter {
     const orderItems = [];
     const transactions = [];
 
-    const cashiers = ["สมชาย (Cashier A)", "สมศรี (Cashier B)"];
+    const cashiers = ["เน€เธเธเน€เธเธเน€เธยเน€เธเธ’เน€เธเธ (Cashier A)", "เน€เธเธเน€เธเธเน€เธเธเน€เธเธเน€เธเธ• (Cashier B)"];
     const paymentMethods = ["cash", "qr_code"];
 
     // Seed data for the last 7 days
@@ -248,7 +248,7 @@ class DBAdapter {
     }
     const customers = JSON.parse(localStorage.getItem("pos_customers")) || [];
     const exists = customers.find(c => c.phone === customer.phone);
-    if (exists) throw new Error("เบอร์โทรศัพท์นี้ถูกใช้งานแล้ว");
+    if (exists) throw new Error("เน€เธโฌเน€เธยเน€เธเธเน€เธเธเน€เธยเน€เธยเน€เธโ€”เน€เธเธเน€เธเธเน€เธเธ‘เน€เธยเน€เธโ€”เน€เธยเน€เธยเน€เธเธ•เน€เธยเน€เธโ€“เน€เธเธเน€เธยเน€เธยเน€เธยเน€เธยเน€เธยเน€เธเธ’เน€เธยเน€เธยเน€เธเธ…เน€เธยเน€เธเธ");
 
     const newCustomer = {
       ...customer,
